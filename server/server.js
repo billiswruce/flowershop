@@ -1,9 +1,15 @@
 const express = require("express");
-// require("dotenv").config();
+const cors = require("cors");
+require("dotenv").config();
 const colors = require("colors");
+
+const stripeRouter = require("./stripe/stripe.router");
 
 const app = express();
 
-console.log(process);
+app.use(cors());
+app.use(express.json());
 
-app.listen(300, () => console.log("Server is running🌷".rainbow.bold));
+app.use("/payments", stripeRouter);
+
+app.listen(3000, () => console.log("Server is running🌷".rainbow.bold));

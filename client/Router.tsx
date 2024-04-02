@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import { NotFound } from "./pages/NotFound";
-import Home from "./pages/Home";
+import { Home } from "./pages/Home";
 import { Cancellation } from "./pages/Cancellation";
+import Payment from "./pages/Payment";
 import { Confirmation } from "./pages/Confirmation";
 
 export const router = createBrowserRouter([
@@ -14,6 +15,10 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home />,
         index: true,
+      },
+      {
+        path: "/payment",
+        element: <Payment />,
       },
       {
         path: "/confirmation",

@@ -9,11 +9,11 @@ const Payment = () => {
         },
         body: JSON.stringify([
           {
-            product: "price_1Jd3v2JbQ9Vv6ZpQZ8sL1e2t",
-            quantity: 1,
+            product: "price_1P17xu05kEsouJvU9D264jnm",
+            quantity: 2,
           },
           {
-            product: "price_1P17xu05kEsouJvU9D264jnm",
+            product: "price_1P17pv05kEsouJvUgx9bSwaT",
             quantity: 1,
           },
         ]),

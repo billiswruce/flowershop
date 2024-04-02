@@ -1,24 +1,9 @@
-const Home = () => {
-  const handlePayment = async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:3000/payments/create-checkout-session",
-        {
-          method: "POST",
-        }
-      );
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.error("Failed to fetch:", error);
-    }
-  };
-
+export const Home = () => {
   return (
     <div>
-      <button onClick={handlePayment}>GE MIG PENGAR</button>
+      <a href="/payment">
+        <button>Go to Payments</button>
+      </a>
     </div>
   );
 };
-
-export default Home;

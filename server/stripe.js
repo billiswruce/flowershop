@@ -2,7 +2,7 @@ const Stripe = require("stripe"); //klass alltid stor bokstav
 
 const initStripe = () => {
   const apiKey = process.env.STRIPE_KEY;
-  if (!apikey) return null;
+  if (!apiKey) return null;
   return new Stripe(apiKey, {
     apiVersion: "2023-10-16",
   });

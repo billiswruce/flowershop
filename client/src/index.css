@@ -13,6 +13,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  background-image: url("./img/bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* Andra bakgrundsrelaterade egenskaper kan också anges här */
+}
+
 a {
   font-weight: 500;
   color: #646cff;

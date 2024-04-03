@@ -1,4 +1,4 @@
-const initStripe = require("../stripe");
+const initStripe = require("../../stripe");
 
 const createCheckoutSession = async (req, res) => {
   const cart = req.body;

@@ -7,6 +7,7 @@ const cookieSession = require("cookie-session");
 const stripeRouter = require("./resources/stripe/stripe.router");
 const userRouter = require("./resources/users/users.router");
 const authRouter = require("./resources/auth/auth.router");
+const { getProducts } = require("./resources/stripe/stripe.controller");
 
 const app = express();
 
@@ -30,5 +31,6 @@ app.use(
 app.use("/payments", stripeRouter);
 app.use("/users", userRouter);
 app.use("/auth", authRouter);
+app.get("/products", getProducts);
 
 app.listen(3000, () => console.log("Server is running🌷".rainbow.bold));

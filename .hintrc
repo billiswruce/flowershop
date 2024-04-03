@@ -15,5 +15,11 @@
         "label": "off"
       }
     ]
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not and_ff <= 122",
+    "not firefox <= 123"
+  ]
 }

@@ -4,16 +4,12 @@ const bcrypt = require("bcrypt");
 const { validationSchemas } = require("../../validation/validationSchemas");
 
 const register = async (req, res) => {
-  // Validera inkommande data
   const { error } = validationSchemas.validate(req.body);
   if (error) {
     return res.status(400).json({ message: error.details[0].message });
   }
 
   const { email, password } = req.body;
-
-  // Här fortsätter du med din befintliga logik för att kontrollera om användaren finns,
-  // hasha lösenordet, lägga till den nya användaren och spara till databasen
   const users = await fetchUsers();
   const userAlreadyExists = users.find((u) => u.email === email);
 
@@ -34,18 +30,15 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  //kolla så användaren finns
   const { email, password } = req.body;
   const users = await fetchUsers();
   const userExists = users.find((u) => u.email === email);
 
-  //koll så lösenord stämmer
   if (!userExists || !(await bcrypt.compare(password, userExists.password))) {
     return res.status(400).json({ message: "Fel användarnamn eller lösenord" });
   }
-  //skapa en session
+
   req.session.user = userExists;
-  //skicka tillbaka ett svar
   res.status(200).json(userExists.email);
 };
 

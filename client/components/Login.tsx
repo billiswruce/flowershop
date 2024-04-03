@@ -26,7 +26,7 @@ export const Login = () => {
       }
 
       // Om inloggningen lyckades, använd navigate för att omdirigera
-      navigate("/payment"); // Omdirigera till /payment
+      navigate("/shopping"); // Omdirigera till /payment
     } catch (error) {
       console.error("Login error:", error);
       setError("Failed to login. Please check your credentials.");

@@ -25,7 +25,7 @@ const Payment = () => {
 
   return (
     <div>
-      <button onClick={handlePayment}>KASSA?</button>
+      <button onClick={handlePayment}>Let's pay!</button>
     </div>
   );
 };

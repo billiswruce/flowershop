@@ -25,19 +25,19 @@ export const Home = () => {
     authorize();
   }, []);
 
-  const logout = async () => {
-    const response = await fetch("http://localhost:3000/auth/logout", {
-      method: "POST",
-      credentials: "include",
-    });
-    if (response.status === 200) {
-      setUser("");
-    }
-  };
+  // const logout = async () => {
+  //   const response = await fetch("http://localhost:3000/auth/logout", {
+  //     method: "POST",
+  //     credentials: "include",
+  //   });
+  //   if (response.status === 200) {
+  //     setUser("");
+  //   }
+  // };
 
   return (
     <div>
-      <h1>{user ? `INLOGGAD ${user}` : "UTLOGGAD"}</h1>
+      <h1>{user ? `INLOGGAD ${user}` : "WELCOME TO POPPY BLOSSOMS"}</h1>
       {!user && (
         <>
           {isRegistering ? (
@@ -57,7 +57,7 @@ export const Home = () => {
           )}
         </>
       )}
-      {user && <button onClick={logout}>Logga ut</button>}
+      {/* {user && <button onClick={logout}>Logga ut</button>} */}
     </div>
   );
 };

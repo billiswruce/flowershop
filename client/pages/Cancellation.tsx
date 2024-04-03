@@ -1,10 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 export const Cancellation = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <h1>Your order is cancelled, hope you change your mind!</h1>
-      <a href="/">
-        <button>Go back to Homepage</button>
-      </a>
+      <button onClick={() => navigate("/shopping")}>Go back to Homepage</button>
     </div>
   );
 };

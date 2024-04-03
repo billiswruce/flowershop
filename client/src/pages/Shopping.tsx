@@ -33,8 +33,7 @@ export const Shopping = () => {
 
   return (
     <div className="shopping-container">
-      <img src={logo} alt="Logo" />
-      <h2 className="title">Products</h2>
+      <img src={logo} alt="Logo" className="logo" />
       <div className="grid-container">
         {products.map(
           (product: {

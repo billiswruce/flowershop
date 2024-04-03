@@ -1,6 +1,7 @@
 import { Key, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logout from "../components/Logout";
+import logo from "../img/logo.png";
 
 export const Shopping = () => {
   const navigate = useNavigate();
@@ -16,8 +17,8 @@ export const Shopping = () => {
         }
 
         const data = await response.json();
-        console.log("Fetched products:", data); // Log fetched data to inspect its structure
-        setProducts(data || []); // Ändrad från data.data till bara data
+        console.log("Fetched products:", data);
+        setProducts(data || []);
       } catch (error) {
         console.error("Failed to fetch products:", error);
       }
@@ -32,8 +33,7 @@ export const Shopping = () => {
 
   return (
     <div className="shopping-container">
-      <h1 className="welcome">Welcome to!</h1>
-      <h1 className="title">Poppy Blossoms</h1>
+      <img src={logo} alt="Logo" />
       <h2 className="title">Products</h2>
       <div className="grid-container">
         {products.map(
@@ -44,8 +44,6 @@ export const Shopping = () => {
             price: number;
           }) => (
             <div key={product.id} className="grid-item">
-              <h3 className="title">{product.name}</h3>
-              <p className="price">{product.price} SEK</p>
               {product.images && (
                 <img
                   src={product.images[0]}
@@ -53,6 +51,8 @@ export const Shopping = () => {
                   className="image"
                 />
               )}
+              <h3 className="title">{product.name}</h3>
+              <p className="price">{product.price} SEK</p>
             </div>
           )
         )}

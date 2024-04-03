@@ -27,10 +27,10 @@ const getProducts = async (req, res) => {
     console.error("Stripe is not initialized. Check your API key.");
     return res.status(500).send("Stripe initialization failed.");
   }
-
   try {
     const productPriceData = await stripe.prices.list({
       expand: ["data.product"],
+      limit: 100,
     });
 
     const productsWithPrice = productPriceData.data.map((priceData) => ({

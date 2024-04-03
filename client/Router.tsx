@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
-import { NotFound } from "./pages/NotFound";
-import { Home } from "./pages/Home";
-import { Cancellation } from "./pages/Cancellation";
-import Payment from "./pages/Payment";
-import { Confirmation } from "./pages/Confirmation";
-import { Shopping } from "./pages/Shopping";
+import { NotFound } from "./src/pages/NotFound";
+import { Home } from "./src/pages/Home";
+import { Cancellation } from "./src/pages/Cancellation";
+import Payment from "./src/pages/Payment";
+import { Confirmation } from "./src/pages/Confirmation";
+import { Shopping } from "./src/pages/Shopping";
 
 export const router = createBrowserRouter([
   {

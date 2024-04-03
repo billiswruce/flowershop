@@ -33,4 +33,4 @@ app.use("/users", userRouter);
 app.use("/auth", authRouter);
 app.get("/products", getProducts);
 
-app.listen(3000, () => console.log("Server is running🌷".rainbow.bold));
+app.listen(3000, () => console.log("Server is blooming🌷".rainbow.bold));

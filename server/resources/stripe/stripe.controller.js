@@ -21,7 +21,6 @@ const createCheckoutSession = async (req, res) => {
   res.status(200).json({ url: session.url });
 };
 
-// En funktion för att hämta alla produkter
 const getProducts = async (req, res) => {
   const stripe = initStripe();
   if (!stripe) {
@@ -30,14 +29,22 @@ const getProducts = async (req, res) => {
   }
 
   try {
-    const products = await stripe.products.list({
-      limit: 10, // Ange hur många produkter du vill hämta, justera enligt behov
+    const productPriceData = await stripe.prices.list({
+      expand: ["data.product"],
     });
 
-    res.status(200).json(products);
+    const productsWithPrice = productPriceData.data.map((priceData) => ({
+      id: priceData.product.id,
+      name: priceData.product.name,
+      price: priceData.unit_amount / 100, // Convert from cents to currency unit
+      images: priceData.product.images, // Assuming images are included in the product data
+    }));
+
+    res.status(200).json(productsWithPrice);
   } catch (error) {
     console.error("Error fetching products:", error);
     res.status(500).send("An error occurred while fetching products.");
   }
 };
+
 module.exports = { createCheckoutSession, getProducts };

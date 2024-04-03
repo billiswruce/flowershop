@@ -53,7 +53,7 @@ export const Home = () => {
         </>
       )}
       {user && (
-        <button onClick={goToShopping}>Go to Shopping</button> // Knapp för att navigera till shopping-sidan när användaren är inloggad
+        <button onClick={goToShopping}>Go to Products</button> // Knapp för att navigera till shopping-sidan när användaren är inloggad
       )}
     </div>
   );

@@ -16,7 +16,8 @@ export const Shopping = () => {
         }
 
         const data = await response.json();
-        setProducts(data.data || []);
+        console.log("Fetched products:", data); // Log fetched data to inspect its structure
+        setProducts(data || []); // Ändrad från data.data till bara data
       } catch (error) {
         console.error("Failed to fetch products:", error);
       }
@@ -24,6 +25,10 @@ export const Shopping = () => {
 
     fetchProducts();
   }, []);
+
+  if (!products.length) {
+    return <p>Loading...</p>; // Render a loading message while products are being fetched
+  }
 
   return (
     <div className="shopping-container">
@@ -34,12 +39,11 @@ export const Shopping = () => {
             id: Key | null | undefined;
             images: any;
             name: string;
-            price: number; // Lägg till price i produktobjektet
+            price: number;
           }) => (
             <div key={product.id} className="grid-item">
-              {/* Placera priset över bilden */}
-              <p className="price">${product.price}</p>
               <h3 className="title">{product.name}</h3>
+              <p className="price">{product.price} SEK</p>
               {product.images && (
                 <img
                   src={product.images[0]}

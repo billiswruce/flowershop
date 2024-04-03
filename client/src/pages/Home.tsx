@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Registration } from "../components/Registration";
 import { Login } from "../components/Login";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../img/logo.png";
 
 export const Home = () => {
   const [user, setUser] = useState<string>("");
@@ -35,7 +35,7 @@ export const Home = () => {
 
   return (
     <div>
-      <h1>{user ? `INLOGGAD ${user}` : logo}</h1>
+      <h1>{user ? `INLOGGAD ${user}` : <img src={logo} alt="Logo" />}</h1>
       {!user && (
         <>
           {isRegistering ? (

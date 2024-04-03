@@ -1,11 +1,5 @@
-// export const Home = () => {
-//   return (
-//     <div>
-//     </div>
-//   );
-// };
-
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { Registration } from "../components/Registration";
 
 export const Home = () => {
   const [user, setUser] = useState<string>("");
@@ -29,24 +23,24 @@ export const Home = () => {
     authorize();
   }, []);
 
-  const register = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: "fakeemail@tjoho.com",
-          password: "123456",
-        }),
-      });
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+  // const register = async () => {
+  //   try {
+  //     const response = await fetch("http://localhost:3000/auth/register", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         email: "fakeemail@tjoho.com",
+  //         password: "123456",
+  //       }),
+  //     });
+  //     const data = await response.json();
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //   }
+  // };
 
   const login = async () => {
     const response = await fetch("http://localhost:3000/auth/login", {
@@ -80,8 +74,8 @@ export const Home = () => {
 
   return (
     <div>
-      <h1>{user ? "INLOGGAD" + user : "UTLOGGAD"}</h1>
-      <button onClick={register}>Register</button>
+      <h1>{user ? `INLOGGAD ${user}` : "UTLOGGAD"}</h1>
+      <Registration />
       <button onClick={login}>Login</button>
       <button onClick={logout}>Log Out</button>
       <a href="/payment">

@@ -1,30 +1,36 @@
 const fetchUsers = require("../../utils/fetchUsers");
 const fs = require("fs").promises;
 const bcrypt = require("bcrypt");
+const { validationSchemas } = require("../../validation/validationSchemas");
 
 const register = async (req, res) => {
-  //hämta email och lösenord från req.body
+  // Validera inkommande data
+  const { error } = validationSchemas.validate(req.body);
+  if (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
+
   const { email, password } = req.body;
-  //så att anvädaren inte redan finns
+
+  // Här fortsätter du med din befintliga logik för att kontrollera om användaren finns,
+  // hasha lösenordet, lägga till den nya användaren och spara till databasen
   const users = await fetchUsers();
   const userAlreadyExists = users.find((u) => u.email === email);
 
   if (userAlreadyExists) {
     return res.status(400).json({ message: "Användaren finns redan" });
   }
-  //kryptera lösenordet
+
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  //sparar till databasen
-  const newUser = {
-    email,
-    password: hashedPassword,
-  };
+  const newUser = { email, password: hashedPassword };
   users.push(newUser);
-  await fs.writeFile("./data/users.json", JSON.stringify(users, null, 2));
-  //skicka tillbaka ett svar
 
-  res.status(201).json(newUser.email);
+  await fs.writeFile("./data/users.json", JSON.stringify(users, null, 2));
+
+  res
+    .status(201)
+    .json({ message: "Användare registrerad", email: newUser.email });
 };
 
 const login = async (req, res) => {

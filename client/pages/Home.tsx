@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 import { Registration } from "../components/Registration";
 import { Login } from "../components/Login";
+import { useNavigate } from "react-router-dom"; // Importera useNavigate från React Router
 
 export const Home = () => {
   const [user, setUser] = useState<string>("");
-  const [isRegistering, setIsRegistering] = useState(false); // Nytt tillstånd för att hantera vy mellan registrering och login
+  const [isRegistering, setIsRegistering] = useState(false);
+
+  const navigate = useNavigate(); // Skapa en navigate-funktion med useNavigate
+
+  const goToShopping = () => {
+    navigate("/shopping"); // Funktion för att navigera till shopping-sidan
+  };
 
   useEffect(() => {
     const authorize = async () => {
@@ -25,16 +32,6 @@ export const Home = () => {
     authorize();
   }, []);
 
-  // const logout = async () => {
-  //   const response = await fetch("http://localhost:3000/auth/logout", {
-  //     method: "POST",
-  //     credentials: "include",
-  //   });
-  //   if (response.status === 200) {
-  //     setUser("");
-  //   }
-  // };
-
   return (
     <div>
       <h1>{user ? `INLOGGAD ${user}` : "WELCOME TO POPPY BLOSSOMS"}</h1>
@@ -44,20 +41,20 @@ export const Home = () => {
             <>
               <Registration />
               <button onClick={() => setIsRegistering(false)}>
-                Tillbaka till login
+                Back to Login
               </button>
             </>
           ) : (
             <>
               <Login />
-              <button onClick={() => setIsRegistering(true)}>
-                Registrera dig här
-              </button>
+              <button onClick={() => setIsRegistering(true)}>Register</button>
             </>
           )}
         </>
       )}
-      {/* {user && <button onClick={logout}>Logga ut</button>} */}
+      {user && (
+        <button onClick={goToShopping}>Go to Shopping</button> // Knapp för att navigera till shopping-sidan när användaren är inloggad
+      )}
     </div>
   );
 };

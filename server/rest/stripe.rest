@@ -1,1 +1,4 @@
 POST http://localhost:3000/payments/create-checkout-session
+
+###
+GET http://localhost:3000/products/

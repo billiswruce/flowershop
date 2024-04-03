@@ -4,6 +4,7 @@ import { Login } from "../components/Login";
 
 export const Home = () => {
   const [user, setUser] = useState<string>("");
+  const [isRegistering, setIsRegistering] = useState(false); // Nytt tillstånd för att hantera vy mellan registrering och login
 
   useEffect(() => {
     const authorize = async () => {
@@ -24,26 +25,6 @@ export const Home = () => {
     authorize();
   }, []);
 
-  // const login = async () => {
-  //   const response = await fetch("http://localhost:3000/auth/login", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     credentials: "include",
-  //     body: JSON.stringify({
-  //       email: "",
-  //       password: "",
-  //     }),
-  //   });
-  //   const data = await response.json();
-  //   if (response.status === 200) {
-  //     setUser(data);
-  //   } else {
-  //     setUser("");
-  //   }
-  // };
-
   const logout = async () => {
     const response = await fetch("http://localhost:3000/auth/logout", {
       method: "POST",
@@ -59,18 +40,26 @@ export const Home = () => {
       <h1>{user ? `INLOGGAD ${user}` : "UTLOGGAD"}</h1>
       {!user && (
         <>
-          <Registration />
-          <Login />
+          {isRegistering ? (
+            <>
+              <Registration />
+              <button onClick={() => setIsRegistering(false)}>
+                Tillbaka till login
+              </button>
+            </>
+          ) : (
+            <>
+              <Login />
+              <button onClick={() => setIsRegistering(true)}>
+                Registrera dig här
+              </button>
+            </>
+          )}
         </>
       )}
-      {user && <button onClick={logout}>Log Out</button>}
-      <a href="/payment">
-        <button>Go to Payments</button>
-      </a>
+      {user && <button onClick={logout}>Logga ut</button>}
     </div>
   );
 };
 
 export default Home;
-
-//RAFCE kortkommando för att få fram basic template för en funktionell komponent

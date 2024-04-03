@@ -25,7 +25,7 @@ const Payment = () => {
 
   return (
     <div>
-      <button onClick={handlePayment}>GE MIG PENGAR</button>
+      <button onClick={handlePayment}>KASSA?</button>
     </div>
   );
 };

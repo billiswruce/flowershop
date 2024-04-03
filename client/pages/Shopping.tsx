@@ -34,10 +34,12 @@ export const Shopping = () => {
             id: Key | null | undefined;
             images: any;
             name: string;
+            price: number; // Lägg till price i produktobjektet
           }) => (
             <div key={product.id} className="grid-item">
+              {/* Placera priset över bilden */}
+              <p className="price">${product.price}</p>
               <h3 className="title">{product.name}</h3>
-
               {product.images && (
                 <img
                   src={product.images[0]}

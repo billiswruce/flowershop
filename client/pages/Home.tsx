@@ -41,7 +41,7 @@ export const Home = () => {
             <>
               <Registration />
               <button onClick={() => setIsRegistering(false)}>
-                Tillbaka till login
+                Back to Login
               </button>
             </>
           ) : (

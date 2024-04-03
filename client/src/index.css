@@ -20,11 +20,13 @@ body {
   flex-direction: column; /* Lägger till detta om du vill stapla barn-element vertikalt */
   min-width: 320px;
   min-height: 100vh;
-  background-image: url("./img/bg.png");
+  background: rgb(136, 165, 135);
+  /* background-image: url("./img/bg.png"); */
   /* background-size: cover; */
-  background-repeat: repeat;
+  /* background-repeat: repeat;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(20px);
+*/
 }
 
 a {
@@ -90,6 +92,7 @@ button:focus-visible {
 .image {
   width: 100%;
   height: auto;
+  border-radius: 5px; /* Lägg till rundade hörn */
 }
 
 @media (prefers-color-scheme: light) {

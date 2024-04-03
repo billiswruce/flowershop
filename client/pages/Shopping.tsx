@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logout from "../components/Logout";
 
@@ -16,7 +16,6 @@ export const Shopping = () => {
         }
 
         const data = await response.json();
-        // Antag att 'data' är direkt responsen du får från servern, som innehåller en lista med produkter.
         setProducts(data.data || []);
       } catch (error) {
         console.error("Failed to fetch products:", error);
@@ -27,22 +26,29 @@ export const Shopping = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Welcome!</h1>
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            {product.name}
-            {product.images && (
-              <img
-                src={product.images[0]}
-                alt={product.name}
-                style={{ width: "100px", height: "auto" }}
-              />
-            )}
-          </li>
-        ))}
-      </ul>
+    <div className="shopping-container">
+      <h1 className="welcome">Welcome!</h1>
+      <div className="grid-container">
+        {products.map(
+          (product: {
+            id: Key | null | undefined;
+            images: any;
+            name: string;
+          }) => (
+            <div key={product.id} className="grid-item">
+              <h3 className="title">{product.name}</h3>
+
+              {product.images && (
+                <img
+                  src={product.images[0]}
+                  alt={product.name}
+                  className="image"
+                />
+              )}
+            </div>
+          )
+        )}
+      </div>
       <button onClick={() => navigate("/payment")}>Your Cart</button>
       <Logout />
     </div>

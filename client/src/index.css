@@ -60,6 +60,38 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.shopping-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcome {
+  font-size: 3.2em;
+  margin-bottom: 20px;
+  margin: 70px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.grid-item {
+  position: relative;
+}
+
+.title {
+  z-index: 1;
+  margin-top: 12px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

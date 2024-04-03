@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 import { Registration } from "../components/Registration";
 import { Login } from "../components/Login";
+import { useNavigate } from "react-router-dom"; // Importera useNavigate från React Router
 
 export const Home = () => {
   const [user, setUser] = useState<string>("");
-  const [isRegistering, setIsRegistering] = useState(false); // Nytt tillstånd för att hantera vy mellan registrering och login
+  const [isRegistering, setIsRegistering] = useState(false);
+
+  const navigate = useNavigate(); // Skapa en navigate-funktion med useNavigate
+
+  const goToShopping = () => {
+    navigate("/shopping"); // Funktion för att navigera till shopping-sidan
+  };
 
   useEffect(() => {
     const authorize = async () => {
@@ -45,7 +52,9 @@ export const Home = () => {
           )}
         </>
       )}
-      {/* {user && <button onClick={logout}>Logga ut</button>} */}
+      {user && (
+        <button onClick={goToShopping}>Go to Shopping</button> // Knapp för att navigera till shopping-sidan när användaren är inloggad
+      )}
     </div>
   );
 };

@@ -6,9 +6,7 @@ export const Cancellation = () => {
   return (
     <div>
       <h1>Your order is cancelled, hope you change your mind!</h1>
-      <button onClick={() => navigate("/shopping")}>
-        Go back to Productse
-      </button>
+      <button onClick={() => navigate("/shopping")}>Go back to Products</button>
     </div>
   );
 };

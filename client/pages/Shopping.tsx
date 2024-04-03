@@ -32,7 +32,8 @@ export const Shopping = () => {
 
   return (
     <div className="shopping-container">
-      <h1 className="welcome">Welcome!</h1>
+      <h1 className="welcome">Welcome to!</h1>
+      <h1 className="title">Poppy Blossoms</h1>
       <h2 className="title">Products</h2>
       <div className="grid-container">
         {products.map(

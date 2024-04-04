@@ -8,10 +8,10 @@ export const Home = () => {
   const [user, setUser] = useState<string>("");
   const [isRegistering, setIsRegistering] = useState(false);
 
-  const navigate = useNavigate(); // Skapa en navigate-funktion med useNavigate
+  const navigate = useNavigate();
 
   const goToShopping = () => {
-    navigate("/shopping"); // Funktion för att navigera till shopping-sidan
+    navigate("/shopping");
   };
 
   useEffect(() => {
@@ -53,9 +53,7 @@ export const Home = () => {
           )}
         </>
       )}
-      {user && (
-        <button onClick={goToShopping}>Go to Products</button> // Knapp för att navigera till shopping-sidan när användaren är inloggad
-      )}
+      {user && <button onClick={goToShopping}>Go to Products</button>}
     </div>
   );
 };

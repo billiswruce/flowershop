@@ -28,7 +28,7 @@ export const Shopping = () => {
   }, []);
 
   if (!products.length) {
-    return <p>Loading...</p>; // Render a loading message while products are being fetched
+    return <p>Loading...</p>;
   }
 
   return (

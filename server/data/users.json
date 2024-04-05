@@ -2,5 +2,10 @@
   {
     "email": "hello.jessicatell@gmail.com",
     "password": "$2b$10$tVdfJrK/l2lxQqTsR.VbHu2O5LtAn6cNwb1fff/QHxjWvWaBchHfy"
+  },
+  {
+    "email": "rebecca@hero.com",
+    "password": "$2b$10$suDtxnD0ZVltjMBtunFuZ.sHodsUURe/aGNW/1EqJIUJUXmAnwUj6",
+    "stripeCustomerId": "cus_PrxIMnQLcwlTHs"
   }
 ]

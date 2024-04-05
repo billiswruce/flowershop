@@ -20,7 +20,9 @@ const Payment = () => {
       }
     );
     const data = await response.json();
+    console.log(data);
     localStorage.setItem("sessionId", JSON.stringify(data.sessionId));
+
     window.location = data.url;
   };
 

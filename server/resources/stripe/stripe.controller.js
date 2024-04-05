@@ -19,7 +19,7 @@ const createCheckoutSession = async (req, res) => {
     cancel_url: "http://localhost:5173/cancellation",
   });
 
-  res.status(200).json({ url: session.url });
+  res.status(200).json({ url: session.url, sessionId: session.id });
 };
 
 //
@@ -27,6 +27,7 @@ const createCheckoutSession = async (req, res) => {
 //
 
 const verifySession = async (req, res) => {
+  console.log("hallåååå");
   const stripe = initStripe();
 
   const sessionId = req.body.sessionId;
@@ -49,7 +50,7 @@ const verifySession = async (req, res) => {
       orders.push(order);
       await fs.writeFile("./data/orders.json", JSON.stringify(orders, null, 4));
 
-      res.status(200).json({ status: session.payment_status });
+      res.status(200).json({ verified: true });
     } else {
       res.status(400).json({ error: "Payment not completed." });
     }

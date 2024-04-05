@@ -15,8 +15,8 @@ const createCheckoutSession = async (req, res) => {
       };
     }),
 
-    success_url: "http://localhost:5173/confirmation", // Kontrollera om denna URL är korrekt
-    cancel_url: "http://localhost:5173/cancellation", // Kontrollera om denna URL är korrekt
+    success_url: "http://localhost:5173/confirmation",
+    cancel_url: "http://localhost:5173/cancellation",
   });
 
   res.status(200).json({ url: session.url });
@@ -34,7 +34,7 @@ const verifySession = async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
     if (session.payment_status === "paid") {
-      const lineItems = await stripe.checkout.sessions.listLineItems(sessionId); // Lägg till await här
+      const lineItems = await stripe.checkout.sessions.listLineItems(sessionId);
 
       const order = {
         orderNumber: Math.floor(Math.random() * 1000000),
@@ -45,13 +45,13 @@ const verifySession = async (req, res) => {
         date: new Date(),
       };
 
-      const orders = JSON.parse(await fs.readFile("./data/orders.json")); // Lägg till await här
+      const orders = JSON.parse(await fs.readFile("./data/orders.json"));
       orders.push(order);
-      await fs.writeFile("./data/orders.json", JSON.stringify(orders, null, 4)); // Lägg till await här
+      await fs.writeFile("./data/orders.json", JSON.stringify(orders, null, 4));
 
-      res.status(200).json({ status: session.payment_status }); // Flytta hit för att skicka tillbaka svar
+      res.status(200).json({ status: session.payment_status });
     } else {
-      res.status(400).json({ error: "Payment not completed." }); // Om betalningen inte är slutförd
+      res.status(400).json({ error: "Payment not completed." });
     }
   } catch (error) {
     console.error("Error verifying session:", error);
@@ -80,8 +80,8 @@ const getProducts = async (req, res) => {
     const productsWithPrice = productPriceData.data.map((priceData) => ({
       id: priceData.product.id,
       name: priceData.product.name,
-      price: priceData.unit_amount / 100, // Convert from cents to currency unit
-      images: priceData.product.images, // Assuming images are included in the product data
+      price: priceData.unit_amount / 100,
+      images: priceData.product.images,
     }));
 
     res.status(200).json(productsWithPrice);

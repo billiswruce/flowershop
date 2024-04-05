@@ -2,8 +2,10 @@ const fetchUsers = require("../../utils/fetchUsers");
 const fs = require("fs").promises;
 const bcrypt = require("bcrypt");
 const { validationSchemas } = require("../../validation/validationSchemas");
+const initStripe = require("../../stripe"); // Antas att denna fil korrekt returnerar en initierad Stripe-instans
 
 const register = async (req, res) => {
+  const stripe = initStripe();
   const { error } = validationSchemas.validate(req.body);
   if (error) {
     return res.status(400).json({ message: error.details[0].message });
@@ -17,9 +19,24 @@ const register = async (req, res) => {
     return res.status(400).json({ message: "Användaren finns redan" });
   }
 
+  // Skapa Stripe-kund
+  let stripeCustomer;
+  try {
+    stripeCustomer = await stripe.customers.create({
+      email,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: "Kunde inte skapa Stripe-kund" });
+  }
+
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const newUser = { email, password: hashedPassword };
+  // Inkludera Stripe kund-ID när du skapar den nya användaren
+  const newUser = {
+    email,
+    password: hashedPassword,
+    stripeCustomerId: stripeCustomer.id, // Spara Stripe kund-ID med användaren
+  };
   users.push(newUser);
 
   await fs.writeFile("./data/users.json", JSON.stringify(users, null, 2));

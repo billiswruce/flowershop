@@ -7,5 +7,10 @@
     "email": "rebecca@hero.com",
     "password": "$2b$10$suDtxnD0ZVltjMBtunFuZ.sHodsUURe/aGNW/1EqJIUJUXmAnwUj6",
     "stripeCustomerId": "cus_PrxIMnQLcwlTHs"
+  },
+  {
+    "email": "jessica@jessica.se",
+    "password": "$2b$10$oqwH8AYERWJ.YHJpPh.v7OoLrjhPS69Pj6NL.ecFeY.tdKxGjhkJS",
+    "stripeCustomerId": "cus_Pt4sFdPNlyMSlh"
   }
 ]

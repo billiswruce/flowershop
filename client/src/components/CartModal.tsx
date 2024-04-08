@@ -15,6 +15,7 @@ const CartModal = ({
     return total + item.product.price * item.quantity;
   }, 0);
 
+  // HÅRDKODNING SKA BORT!!! KOPPLAS IHOP MED ID FRÅN SESSION
   const handlePayment = async () => {
     const response = await fetch(
       "http://localhost:3000/payments/create-checkout-session",
@@ -41,6 +42,8 @@ const CartModal = ({
 
     window.location = data.url;
   };
+
+  // -----------------------------
 
   return (
     <div className={isOpen ? "cart-modal" : "cart-modal cart-modal-hidden"}>

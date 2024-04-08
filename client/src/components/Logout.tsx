@@ -4,10 +4,9 @@ const Logout = () => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    // Bekräfta att användaren verkligen vill logga ut
     const confirmLogout = confirm("Are you sure you want to log out?");
     if (!confirmLogout) {
-      return; // Avbryt utloggningen om användaren inte bekräftar
+      return;
     }
 
     try {
@@ -16,7 +15,7 @@ const Logout = () => {
         credentials: "include",
       });
       if (response.status === 200) {
-        navigate("/"); // Navigera till startsidan efter utloggning
+        navigate("/");
       }
     } catch (error) {
       console.error("Logout error:", error);

@@ -2,7 +2,7 @@ const fetchUsers = require("../../utils/fetchUsers");
 const fs = require("fs").promises;
 const bcrypt = require("bcrypt");
 const { validationSchemas } = require("../../validation/validationSchemas");
-const initStripe = require("../../stripe"); // Antas att denna fil korrekt returnerar en initierad Stripe-instans
+const initStripe = require("../../stripe"); 
 
 const register = async (req, res) => {
   const stripe = initStripe();
@@ -19,7 +19,6 @@ const register = async (req, res) => {
     return res.status(400).json({ message: "Användaren finns redan" });
   }
 
-  // Skapa Stripe-kund
   let stripeCustomer;
   try {
     stripeCustomer = await stripe.customers.create({
@@ -35,7 +34,7 @@ const register = async (req, res) => {
   const newUser = {
     email,
     password: hashedPassword,
-    stripeCustomerId: stripeCustomer.id, // Spara Stripe kund-ID med användaren
+    stripeCustomerId: stripeCustomer.id,
   };
   users.push(newUser);
 

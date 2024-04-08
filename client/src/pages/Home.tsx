@@ -41,14 +41,24 @@ export const Home = () => {
           {isRegistering ? (
             <>
               <Registration />
-              <button onClick={() => setIsRegistering(false)}>
+              <span
+                className="link-like"
+                onClick={() => setIsRegistering(false)}>
                 Back to Login
-              </button>
+              </span>
             </>
           ) : (
             <>
               <Login />
-              <button onClick={() => setIsRegistering(true)}>Register</button>
+              <p>
+                Need an account? Register{" "}
+                <span
+                  className="link-like"
+                  onClick={() => setIsRegistering(true)}>
+                  here
+                </span>
+                !
+              </p>
             </>
           )}
         </>

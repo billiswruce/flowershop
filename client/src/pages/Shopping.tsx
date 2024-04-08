@@ -1,11 +1,11 @@
-import { Key, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Logout from "../components/Logout";
+import { useEffect, useState } from "react";
 import logo from "../img/logo.png";
+import { useCart } from "../context/CartContext";
+import Header from "../components/Header";
 
 export const Shopping = () => {
-  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -32,32 +32,34 @@ export const Shopping = () => {
   }
 
   return (
-    <div className="shopping-container">
-      <img src={logo} alt="Logo" className="logo" />
-      <div className="grid-container">
-        {products.map(
-          (product: {
-            id: Key | null | undefined;
-            images: any;
-            name: string;
-            price: number;
-          }) => (
-            <div key={product.id} className="grid-item">
-              {product.images && (
-                <img
-                  src={product.images[0]}
-                  alt={product.name}
-                  className="image"
-                />
-              )}
-              <h3 className="title">{product.name}</h3>
-              <p className="price">{product.price} SEK</p>
-            </div>
-          )
-        )}
+    <>
+      <Header />
+      <div className="shopping-container">
+        <img src={logo} alt="Logo" className="logo" />
+        <div className="grid-container">
+          {products.map(
+            (product: {
+              id: string;
+              images: any;
+              name: string;
+              price: number;
+            }) => (
+              <div key={product.id} className="grid-item">
+                {product.images && (
+                  <img
+                    src={product.images[0]}
+                    alt={product.name}
+                    className="image"
+                  />
+                )}
+                <h3 className="title">{product.name}</h3>
+                <p className="price">{product.price} SEK</p>
+                <button onClick={() => addToCart(product)}>Add to Cart</button>
+              </div>
+            )
+          )}
+        </div>
       </div>
-      <button onClick={() => navigate("/payment")}>Your Cart</button>
-      <Logout />
-    </div>
+    </>
   );
 };

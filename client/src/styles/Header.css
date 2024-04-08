@@ -4,16 +4,31 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #f5f5f5; /* Ljusgrå bakgrund */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lägg till lite skugga för djup */
+  padding-right: 2rem;
+  padding-left: 2rem;
+  background-color: #88a587; /* Ljusgrå bakgrund */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cart {
   display: flex;
   align-items: center;
   cursor: pointer;
+  color: #3d4b3c;
 }
 
 .cart p {
   margin-left: 0.5rem;
+}
+
+button {
+  background-color: #a9caa8;
+  color: #546653;
+  border: none;
+  transition: transform 0.1s ease, background-color 0.1s ease;
+}
+
+button:active {
+  transform: scale(0.95);
+  background-color: #88a587;
 }

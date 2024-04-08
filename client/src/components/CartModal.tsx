@@ -23,9 +23,9 @@ const CartModal = ({
             <img
               src={item.product.images[0]}
               alt={item.product.name}
-              className="cart-item-image" // Se till att du har denna klass i din CSS
+              className="cart-item-image"
             />
-            {item.product.name} - Antal: {item.quantity}
+            {item.product.name} - Amount: {item.quantity}
             <button
               onClick={() => removeFromCart(item.product.id)}
               className="remove-item-btn">

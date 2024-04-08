@@ -3,7 +3,7 @@ export interface Product {
   name: string;
   description?: string;
   images: string[];
-  price: number; // Uppdaterad för att matcha API-svaret
+  price: number;
 }
 
 export interface CartItem {

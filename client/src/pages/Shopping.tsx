@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import logo from "../img/logo.png";
 import { useCart } from "../context/CartContext";
 import Header from "../components/Header";
+import CartModal from "../components/CartModal";
 
 export const Shopping = () => {
   const [products, setProducts] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { addToCart } = useCart();
 
   useEffect(() => {
@@ -33,7 +35,8 @@ export const Shopping = () => {
 
   return (
     <>
-      <Header />
+      <Header setIsModalOpen={setIsModalOpen} />
+      <CartModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <div className="shopping-container">
         <img src={logo} alt="Logo" className="logo" />
         <div className="grid-container">

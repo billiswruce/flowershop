@@ -10,6 +10,7 @@ import { Product, CartItem, ICartContext } from "../models/cart";
 export const initalValues = {
   cart: [],
   addToCart: () => {},
+  removeFromCart: () => {},
 };
 
 const CartContext = createContext<ICartContext>(initalValues);
@@ -38,8 +39,24 @@ const CartProvider = ({ children }: PropsWithChildren<any>) => {
     }
   };
 
+  const removeFromCart = (productId: string) => {
+    setCart((currentCart) => {
+      const itemExists = currentCart.find(
+        (item) => item.product.id === productId
+      );
+      if (itemExists && itemExists.quantity > 1) {
+        return currentCart.map((item) =>
+          item.product.id === productId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        );
+      } else {
+        return currentCart.filter((item) => item.product.id !== productId);
+      }
+    });
+  };
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );

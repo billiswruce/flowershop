@@ -1,5 +1,6 @@
 const initStripe = require("../../stripe");
 const fs = require("fs").promises;
+require("dotenv").config();
 
 const createCheckoutSession = async (req, res) => {
   const cart = req.body;
@@ -14,7 +15,7 @@ const createCheckoutSession = async (req, res) => {
         quantity: item.quantity,
       };
     }),
-
+    allow_promotion_codes: true,
     success_url: "http://localhost:5173/confirmation",
     cancel_url: "http://localhost:5173/cancellation",
   });

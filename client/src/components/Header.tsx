@@ -1,22 +1,22 @@
 import { useCart } from "../context/CartContext";
 import { BsCart2 } from "react-icons/bs";
 import Logout from "./Logout";
-import "../styles/Header.css"; // Glöm inte att importera din CSS här
-// import { useNavigate } from "react-router-dom";
+import "../styles/Header.css";
 
-const Header = () => {
+const Header = ({
+  setIsModalOpen,
+}: {
+  setIsModalOpen: (isOpen: boolean) => void;
+}) => {
   const { cart } = useCart();
-  // const navigate = useNavigate();
 
   return (
     <div className="header">
       <Logout />
-      <div className="cart">
+      <div className="cart" onClick={() => setIsModalOpen(true)}>
         <BsCart2 size="2rem" />
         <p>{cart.length}</p>
       </div>
-
-      {/* <button onClick={() => navigate("/payment")}>Your Cart</button> */}
     </div>
   );
 };

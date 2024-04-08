@@ -3,6 +3,7 @@ import { Registration } from "../components/Registration";
 import { Login } from "../components/Login";
 import { useNavigate } from "react-router-dom";
 import logo from "../img/logo.png";
+import CartProvider from "../context/CartContext";
 
 export const Home = () => {
   const [user, setUser] = useState<string>("");

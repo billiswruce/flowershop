@@ -1,12 +1,9 @@
-import { Key, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Logout from "../components/Logout";
+import { useEffect, useState } from "react";
 import logo from "../img/logo.png";
 import { useCart } from "../context/CartContext";
 import Header from "../components/Header";
 
 export const Shopping = () => {
-  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const { addToCart } = useCart();
 
@@ -62,8 +59,6 @@ export const Shopping = () => {
             )
           )}
         </div>
-        <button onClick={() => navigate("/payment")}>Your Cart</button>
-        <Logout />
       </div>
     </>
   );

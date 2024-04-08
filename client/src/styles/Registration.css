@@ -1,0 +1,37 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px; /* Eller en bredd som passar din design */
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-item {
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+button[type="submit"],
+.btn-register {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box; /* För att padding inte ska påverka totala bredden */
+}
+
+button[type="submit"] {
+  background-color: #cae2d3;
+  color: rgb(84, 102, 83);
+  border: none;
+}
+
+button[type="submit"]:hover {
+  background-color: #aeb1ee;
+}

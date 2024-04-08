@@ -1,0 +1,19 @@
+/* Header.css */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f5f5f5; /* Ljusgrå bakgrund */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lägg till lite skugga för djup */
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cart p {
+  margin-left: 0.5rem;
+}

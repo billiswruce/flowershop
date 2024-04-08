@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/Registration.css";
 
 export const Registration = () => {
   const [email, setEmail] = useState("");
@@ -49,7 +50,9 @@ export const Registration = () => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
       />
-      <button onClick={handleRegister}>Register</button>
+      <button onClick={handleRegister} className="btn-register">
+        Register
+      </button>
     </div>
   );
 };

@@ -32,6 +32,22 @@ button:active {
   background-color: #88a587;
 }
 
+.pay-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.pay-btn {
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #516850;
+  color: #dceadc;
+}
+
 .cart-modal {
   position: fixed;
   top: 0;

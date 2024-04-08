@@ -6,11 +6,11 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate(); // Använd useNavigate hook
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(""); // Rensa tidigare felmeddelanden
+    setError("");
 
     try {
       const response = await fetch("http://localhost:3000/auth/login", {
@@ -26,8 +26,7 @@ export const Login = () => {
         );
       }
 
-      // Om inloggningen lyckades, använd navigate för att omdirigera
-      navigate("/shopping"); // Omdirigera till /payment
+      navigate("/shopping");
     } catch (error) {
       console.error("Login error:", error);
       setError("Failed to login. Please check your credentials.");

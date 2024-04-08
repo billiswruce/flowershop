@@ -12,7 +12,9 @@ const CartModal = ({
 
   return (
     <div className={isOpen ? "cart-modal" : "cart-modal cart-modal-hidden"}>
-      <button onClick={onClose}>Close</button>
+      <button onClick={onClose} className="close-btn">
+        Close
+      </button>
       <h2>Your Cart</h2>
       <ul>
         {cart.map((item) => (

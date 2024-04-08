@@ -22,7 +22,7 @@
 }
 
 button {
-  background-color: #a9caa8;
+  background-color: #d9e8d9;
   color: #546653;
   border: none;
   transition: transform 0.1s ease, background-color 0.1s ease;
@@ -39,7 +39,7 @@ button:active {
   right: 0;
   width: 300px; /* Justera efter önskemål */
   height: 100%;
-  background-color: #b3cdb2;
+  background-color: #d9e8d9;
   padding: 20px;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
   overflow-y: auto;
@@ -48,4 +48,11 @@ button:active {
 
 .cart-modal-hidden {
   display: none;
+}
+
+.close-btn {
+  background-color: #516850;
+  color: #dceadc;
+  border: none;
+  transition: transform 0.1s ease, background-color 0.1s ease;
 }

@@ -13,4 +13,5 @@ export interface CartItem {
 export interface ICartContext {
   cart: CartItem[];
   addToCart: (product: Product) => void;
+  removeFromCart: (productId: string) => void;
 }

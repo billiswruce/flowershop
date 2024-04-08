@@ -37,7 +37,7 @@ button:active {
   position: fixed;
   top: 0;
   right: 0;
-  width: 300px; /* Justera efter önskemål */
+  width: 400px;
   height: 100%;
   background-color: #d9e8d9;
   padding: 20px;
@@ -55,4 +55,25 @@ button:active {
   color: #dceadc;
   border: none;
   transition: transform 0.1s ease, background-color 0.1s ease;
+}
+
+.cart-modal ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.cart-modal li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cart-modal img {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.cart-modal button {
+  margin-left: auto;
 }

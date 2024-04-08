@@ -1,5 +1,6 @@
 import { useCart } from "../context/CartContext";
 import "../styles/Header.css";
+import { FaTrash } from "react-icons/fa";
 
 const CartModal = ({
   isOpen,
@@ -8,7 +9,7 @@ const CartModal = ({
   isOpen: boolean;
   onClose: () => void;
 }) => {
-  const { cart } = useCart();
+  const { cart, removeFromCart } = useCart(); // Använd removeFromCart från useCart
 
   return (
     <div className={isOpen ? "cart-modal" : "cart-modal cart-modal-hidden"}>
@@ -19,7 +20,17 @@ const CartModal = ({
       <ul>
         {cart.map((item) => (
           <li key={item.product.id}>
+            <img
+              src={item.product.images[0]}
+              alt={item.product.name}
+              className="cart-item-image" // Se till att du har denna klass i din CSS
+            />
             {item.product.name} - Antal: {item.quantity}
+            <button
+              onClick={() => removeFromCart(item.product.id)}
+              className="remove-item-btn">
+              <FaTrash />
+            </button>
           </li>
         ))}
       </ul>

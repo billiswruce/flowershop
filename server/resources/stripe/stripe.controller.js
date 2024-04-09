@@ -2,31 +2,53 @@ const initStripe = require("../../stripe");
 const fs = require("fs").promises;
 require("dotenv").config();
 
+///////// CHECKOUT ///////////
 const createCheckoutSession = async (req, res) => {
   const cart = req.body;
 
   const stripe = initStripe();
 
-  const session = await stripe.checkout.sessions.create({
-    mode: "payment",
-    line_items: cart.map((item) => {
+  if (!req.session || !req.session.user) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  console.log(cart);
+
+  const line_items = await Promise.all(
+    cart.map(async (item) => {
+      const product = await stripe.products.retrieve(item.product);
+      const price = await stripe.prices.list({
+        product: item.product,
+        limit: 1,
+      });
       return {
-        price: item.product,
+        price_data: {
+          currency: "sek",
+          product_data: {
+            name: product.name,
+            images: [product.images[0]],
+          },
+          unit_amount: price.data[0].unit_amount,
+        },
         quantity: item.quantity,
       };
-    }),
+    })
+  );
+
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    customer: req.session.user.id,
+    customer_email: req.session.user.email,
+    line_items: line_items,
     allow_promotion_codes: true,
+    mode: "payment",
     success_url: "http://localhost:5173/confirmation",
     cancel_url: "http://localhost:5173/cancellation",
   });
 
-  res.status(200).json({ url: session.url, sessionId: session.id });
+  res.json({ sessionId: session.id, url: session.url });
 };
 
-//
-//
-//
-
+///////// VERIFY ///////////
 const verifySession = async (req, res) => {
   console.log("hallåååå");
   const stripe = initStripe();
@@ -63,10 +85,7 @@ const verifySession = async (req, res) => {
   }
 };
 
-//
-//
-//
-
+///////// GET PRODUCTS ///////////
 const getProducts = async (req, res) => {
   const stripe = initStripe();
   if (!stripe) {

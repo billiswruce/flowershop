@@ -2,8 +2,9 @@ const fetchUsers = require("../../utils/fetchUsers");
 const fs = require("fs").promises;
 const bcrypt = require("bcrypt");
 const { validationSchemas } = require("../../validation/validationSchemas");
-const initStripe = require("../../stripe"); 
+const initStripe = require("../../stripe");
 
+/////////// REGISTER ///////////
 const register = async (req, res) => {
   const stripe = initStripe();
   const { error } = validationSchemas.validate(req.body);
@@ -12,64 +13,96 @@ const register = async (req, res) => {
   }
 
   const { email, password } = req.body;
-  const users = await fetchUsers();
-  const userAlreadyExists = users.find((u) => u.email === email);
+  const DBusers = await fetchUsers();
 
-  if (userAlreadyExists) {
-    return res.status(400).json({ message: "Användaren finns redan" });
+  const userInDB = DBusers.find((u) => u.email === email);
+  if (userInDB) {
+    return res
+      .status(400)
+      .json({ message: "Användaren finns redan i databasen" });
   }
 
-  let stripeCustomer;
-  try {
-    stripeCustomer = await stripe.customers.create({
-      email,
-    });
-  } catch (error) {
-    return res.status(500).json({ message: "Kunde inte skapa Stripe-kund" });
+  const stripeCustomers = await stripe.customers.list();
+  const customerInStripe = stripeCustomers.data.find(
+    (c) => c.email === req.body.email
+  );
+  if (customerInStripe) {
+    return res.status(400).json({ message: "Användaren finns redan i Stripe" });
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const saveStripeCustomer = await stripe.customers.create({
+    name: req.body.name,
+    email: email,
+  });
 
-  // Inkludera Stripe kund-ID när du skapar den nya användaren
-  const newUser = {
-    email,
-    password: hashedPassword,
-    stripeCustomerId: stripeCustomer.id,
-  };
-  users.push(newUser);
+  if (saveStripeCustomer) {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = {
+      // Definiera newUser objektet här
+      stripeCustomerId: saveStripeCustomer.id,
+      email: email,
+      name: req.body.name,
+      password: hashedPassword,
+    };
+    DBusers.push(newUser); // Använd push istället för att skapa en ny array
+    console.log(DBusers);
 
-  await fs.writeFile("./data/users.json", JSON.stringify(users, null, 2));
+    await fs.writeFile("./data/users.json", JSON.stringify(DBusers, null, 2));
 
-  res
-    .status(201)
-    .json({ message: "Användare registrerad", email: newUser.email });
+    res
+      .status(201)
+      .json({ message: "Användare registrerad", email: newUser.email });
+  }
 };
 
+/////////// LOGIN ///////////
 const login = async (req, res) => {
-  const { email, password } = req.body;
-  const users = await fetchUsers();
-  const userExists = users.find((u) => u.email === email);
+  try {
+    const { email, password } = req.body;
+    const users = await fetchUsers();
+    const userExists = users.find((u) => u.email === email);
 
-  if (!userExists || !(await bcrypt.compare(password, userExists.password))) {
-    return res.status(400).json({ message: "Fel användarnamn eller lösenord" });
+    if (!userExists || !(await bcrypt.compare(password, userExists.password))) {
+      return res
+        .status(401)
+        .json({ message: "Fel användarnamn eller lösenord" });
+    }
+
+    req.session.user = { email: userExists.email, id: userExists.id }; // Exempel på att endast spara nödvändig information
+    res.status(200).json({ email: userExists.email, id: userExists.id }); // Uppdaterad för att skicka ett objekt
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({ message: "Ett fel inträffade vid inloggning" });
   }
-
-  req.session.user = userExists;
-  res.status(200).json(userExists.email);
 };
 
+/////////// LOGOUT ///////////
 const logout = (req, res) => {
-  req.session = null;
-  res.status(200).json("Utloggad");
+  try {
+    req.session = null;
+    res.status(200).json("Utloggad");
+  } catch (error) {
+    console.error("Error logging out user:", error);
+    res
+      .status(400)
+      .json({ message: "An error occurred while logging out user" });
+  }
 };
 
+/////////// AUTHORIZE ///////////
 const authorize = (req, res) => {
-  if (!req.session.user) {
+  try {
+    console.log("Session object:", req.session.user);
+    if (!req.session.user) res.status(401).json(req.session.user);
     return res
       .status(401)
       .json({ message: "You must be logged in to access this resource" });
+  } catch (error) {
+    console.error("Error authorizing user:", error);
+    res
+      .status(400)
+      .json({ message: "An error occurred while authorizing user" });
   }
-  res.status(200).json(req.session.user.email);
 };
 
 module.exports = { register, login, logout, authorize };

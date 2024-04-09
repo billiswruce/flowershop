@@ -17,6 +17,13 @@ const CartModal = ({
 
   // HÅRDKODNING SKA BORT!!! KOPPLAS IHOP MED ID FRÅN SESSION
   const handlePayment = async () => {
+    const cartForStripe = cart.map((item) => ({
+      image: item.product.images[0],
+      name: item.product.name,
+      product: item.product.id,
+      quantity: item.quantity,
+    }));
+
     const response = await fetch(
       "http://localhost:3000/payments/create-checkout-session",
       {
@@ -24,26 +31,20 @@ const CartModal = ({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify([
-          {
-            product: "price_1P17xu05kEsouJvU9D264jnm",
-            quantity: 2,
-          },
-          {
-            product: "price_1P17pv05kEsouJvUgx9bSwaT",
-            quantity: 1,
-          },
-        ]),
+        credentials: "include",
+        body: JSON.stringify(cartForStripe),
       }
     );
     const data = await response.json();
-    console.log(data);
-    localStorage.setItem("sessionId", JSON.stringify(data.sessionId));
 
-    window.location = data.url;
+    if (response.ok) {
+      console.log(data);
+      localStorage.setItem("sessionId", JSON.stringify(data.sessionId));
+      window.location = data.url;
+    } else {
+      console.error("Failed to create checkout session", data);
+    }
   };
-
-  // -----------------------------
 
   return (
     <div className={isOpen ? "cart-modal" : "cart-modal cart-modal-hidden"}>

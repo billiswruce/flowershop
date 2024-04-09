@@ -1,5 +1,3 @@
-# shop
-
 <img width="833" alt="2" src="https://github.com/billiswruce/shop/assets/98770226/8af26657-32db-473e-b2ab-5c83a1c6c7ed">
 
 # Search Away!

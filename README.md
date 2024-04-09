@@ -2,7 +2,7 @@
 
 # Search Away!
 
-Fullstack Shop App with Stripe and Nodejs
+Fullstack Webshop App with Stripe and Nodejs
 
 ## Key Features
 

@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import thankYouImage from "../img/confirm2.jpg";
+import "../styles/Confirmation.css";
 
 export const Confirmation = () => {
   const [verified, setVerified] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!verified) {
@@ -47,11 +51,27 @@ export const Confirmation = () => {
     }
   }, [verified]);
 
+  const goBackToShop = () => {
+    navigate("/shopping");
+  };
+
   return (
-    <div>
-      <h1>
-        {verified && !isLoading ? "THANK YOU FOR YOUR ORDER!" : "LOADING..."}
-      </h1>
+    <div className="confirmation-container">
+      <button onClick={goBackToShop} className="back-to-shop-btn">
+        Go back to shop
+      </button>
+      {verified && !isLoading ? (
+        <>
+          <h3>Thank you for your order!</h3>
+          <img
+            src={thankYouImage}
+            alt="Thank you for your order"
+            className="confirmation-image"
+          />
+        </>
+      ) : (
+        <h3>LOADING...</h3>
+      )}
     </div>
   );
 };

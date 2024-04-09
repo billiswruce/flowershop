@@ -38,13 +38,12 @@ const register = async (req, res) => {
   if (saveStripeCustomer) {
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = {
-      // Definiera newUser objektet här
       stripeCustomerId: saveStripeCustomer.id,
       email: email,
       name: req.body.name,
       password: hashedPassword,
     };
-    DBusers.push(newUser); // Använd push istället för att skapa en ny array
+    DBusers.push(newUser);
     console.log(DBusers);
 
     await fs.writeFile("./data/users.json", JSON.stringify(DBusers, null, 2));
@@ -68,8 +67,8 @@ const login = async (req, res) => {
         .json({ message: "Fel användarnamn eller lösenord" });
     }
 
-    req.session.user = { email: userExists.email, id: userExists.id }; // Exempel på att endast spara nödvändig information
-    res.status(200).json({ email: userExists.email, id: userExists.id }); // Uppdaterad för att skicka ett objekt
+    req.session.user = { email: userExists.email, id: userExists.id };
+    res.status(200).json({ email: userExists.email, id: userExists.id });
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).json({ message: "Ett fel inträffade vid inloggning" });

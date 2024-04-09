@@ -17,10 +17,8 @@ const CartModal = ({
 
   // HÅRDKODNING SKA BORT!!! KOPPLAS IHOP MED ID FRÅN SESSION
   const handlePayment = async () => {
-    // Kontrollera att användaren är inloggad och hämta användarid om så behövs
-
     const cartForStripe = cart.map((item) => ({
-      product: item.product.id, // Anta att varje produkt har ett fält `id` som motsvarar Stripe pris-ID
+      product: item.product.id,
       quantity: item.quantity,
     }));
 
@@ -31,7 +29,8 @@ const CartModal = ({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(cartForStripe), // Skicka den faktiska kundvagnen
+        credentials: "include",
+        body: JSON.stringify(cartForStripe),
       }
     );
     const data = await response.json();
@@ -44,8 +43,6 @@ const CartModal = ({
       console.error("Failed to create checkout session", data);
     }
   };
-
-  // -----------------------------
 
   return (
     <div className={isOpen ? "cart-modal" : "cart-modal cart-modal-hidden"}>

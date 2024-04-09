@@ -19,10 +19,15 @@ const createCheckoutSession = async (req, res) => {
       price_data: {
         currency: "sek",
         product_data: {
-          name: item.name,
-          images: [item.image],
+          name: item.name ? item.name : "No name",
+          images: [
+            item.image && isValidUrl(item.image)
+              ? item.image
+              : "https://example.com/default-image.png",
+          ],
         },
-        unit_amount: item.price * 100,
+        unit_amount:
+          item.price && !isNaN(item.price) ? Math.round(item.price * 100) : 0,
       },
       quantity: item.quantity,
     })),

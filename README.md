@@ -8,19 +8,19 @@ This webshop is created for order placement and payment through integration with
 Users can register, log in, and make purchases of products managed through Stripe. 
 
 #### Minimum Requirements for Approval
-1. **Products**: Listing of products on a page, fetched from Stripe.
-2. **Shopping Cart**: Ability to add products to a shopping cart.
-3. **Order through Stripe**: Ability to place an order through Stripe based on the contents of the shopping cart.
-4. **Registration**: Ability to register as a user on the webshop, creating a "Customer" in Stripe and saving the user in a JSON file.
-5. **Login**: Ability to log in as a customer using a custom-built login system with cookie-session.
-6. **Saved Orders**: All placed orders are saved to a list in a JSON file.
-7. **Payment Validation**: The order is only saved if payment through Stripe has been completed.
+- [x] **Products**: Listing of products on a page, fetched from Stripe.
+- [x] **Shopping Cart**: Ability to add products to a shopping cart.
+- [x] **Order through Stripe**: Ability to place an order through Stripe based on the contents of the shopping cart.
+- [x] **Registration**: Ability to register as a user on the webshop, creating a "Customer" in Stripe and saving the user in a JSON file.
+- [x] **Login**: Ability to log in as a customer using a custom-built login system with cookie-session.
+- [x] **Saved Orders**: All placed orders are saved to a list in a JSON file.
+- [x] **Payment Validation**: The order is only saved if payment through Stripe has been completed.
 
 #### Additional Requirements for High Approval
 In addition to the minimum requirements, the following must be met to recieve High Approval.
-1. **Discount Code**: Ability to enter a discount code to receive a discount on purchases, through Stripe.
-2. **Order History**: Logged-in users should be able to view their previously placed orders.
-3. **Address and Pickup Point**: Users must fill in their address and choose a pickup point before payment, integrated with PostNord API.
+- [x] **Discount Code**: Ability to enter a discount code to receive a discount on purchases, through Stripe.
+- [ ] **Order History**: Logged-in users should be able to view their previously placed orders.
+- [ ] **Address and Pickup Point**: Users must fill in their address and choose a pickup point before payment, integrated with PostNord API.
 
 #### Before You Start
 - Make sure you have node.js installed

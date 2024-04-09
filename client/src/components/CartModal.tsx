@@ -15,7 +15,6 @@ const CartModal = ({
     return total + item.product.price * item.quantity;
   }, 0);
 
-  // HÅRDKODNING SKA BORT!!! KOPPLAS IHOP MED ID FRÅN SESSION
   const handlePayment = async () => {
     const cartForStripe = cart.map((item) => ({
       image: item.product.images[0],

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Confirmation = () => {
   const [verified, setVerified] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!verified) {
@@ -47,11 +49,16 @@ export const Confirmation = () => {
     }
   }, [verified]);
 
+  const goBackToShop = () => {
+    navigate("/shopping");
+  };
+
   return (
     <div>
-      <h1>
+      <h3>
         {verified && !isLoading ? "THANK YOU FOR YOUR ORDER!" : "LOADING..."}
-      </h1>
+        <button onClick={goBackToShop}>Go back to shop</button>
+      </h3>
     </div>
   );
 };

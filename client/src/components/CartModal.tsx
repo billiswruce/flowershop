@@ -17,6 +17,13 @@ const CartModal = ({
 
   // HÅRDKODNING SKA BORT!!! KOPPLAS IHOP MED ID FRÅN SESSION
   const handlePayment = async () => {
+    // Kontrollera att användaren är inloggad och hämta användarid om så behövs
+
+    const cartForStripe = cart.map((item) => ({
+      product: item.product.id, // Anta att varje produkt har ett fält `id` som motsvarar Stripe pris-ID
+      quantity: item.quantity,
+    }));
+
     const response = await fetch(
       "http://localhost:3000/payments/create-checkout-session",
       {
@@ -24,23 +31,18 @@ const CartModal = ({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify([
-          {
-            product: "price_1P17xu05kEsouJvU9D264jnm",
-            quantity: 2,
-          },
-          {
-            product: "price_1P17pv05kEsouJvUgx9bSwaT",
-            quantity: 1,
-          },
-        ]),
+        body: JSON.stringify(cartForStripe), // Skicka den faktiska kundvagnen
       }
     );
     const data = await response.json();
-    console.log(data);
-    localStorage.setItem("sessionId", JSON.stringify(data.sessionId));
 
-    window.location = data.url;
+    if (response.ok) {
+      console.log(data);
+      localStorage.setItem("sessionId", JSON.stringify(data.sessionId));
+      window.location = data.url;
+    } else {
+      console.error("Failed to create checkout session", data);
+    }
   };
 
   // -----------------------------

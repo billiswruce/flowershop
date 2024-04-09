@@ -12,5 +12,10 @@
     "email": "jessica@jessica.se",
     "password": "$2b$10$oqwH8AYERWJ.YHJpPh.v7OoLrjhPS69Pj6NL.ecFeY.tdKxGjhkJS",
     "stripeCustomerId": "cus_Pt4sFdPNlyMSlh"
+  },
+  {
+    "stripeCustomerId": "cus_PtOQElZG0b04xj",
+    "email": "hello.jessicatell@hejhej.se",
+    "password": "$2b$10$zOG2MbCimcKA5So.tfjMCOuScQDKF8gjBfGMdJ5g787W/pf8Hmm7m"
   }
 ]

@@ -2,20 +2,32 @@ const initStripe = require("../../stripe");
 const fs = require("fs").promises;
 require("dotenv").config();
 
+///////// CHECKOUT ///////////
 const createCheckoutSession = async (req, res) => {
   const cart = req.body;
 
   const stripe = initStripe();
 
+  if (!req.session || !req.session.user) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
   const session = await stripe.checkout.sessions.create({
-    mode: "payment",
-    line_items: cart.map((item) => {
-      return {
-        price: item.product,
-        quantity: item.quantity,
-      };
-    }),
+    payment_method_types: ["card"],
+    customer: req.session.user.id,
+    line_items: cart.map((item) => ({
+      price_data: {
+        currency: "sek",
+        product_data: {
+          name: item.name,
+          images: [item.image],
+        },
+        unit_amount: item.price * 100,
+      },
+      quantity: item.quantity,
+    })),
     allow_promotion_codes: true,
+    mode: "payment",
     success_url: "http://localhost:5173/confirmation",
     cancel_url: "http://localhost:5173/cancellation",
   });
@@ -23,10 +35,7 @@ const createCheckoutSession = async (req, res) => {
   res.status(200).json({ url: session.url, sessionId: session.id });
 };
 
-//
-//
-//
-
+///////// VERIFY ///////////
 const verifySession = async (req, res) => {
   console.log("hallåååå");
   const stripe = initStripe();
@@ -63,10 +72,7 @@ const verifySession = async (req, res) => {
   }
 };
 
-//
-//
-//
-
+///////// GET PRODUCTS ///////////
 const getProducts = async (req, res) => {
   const stripe = initStripe();
   if (!stripe) {

@@ -3,7 +3,6 @@ const fs = require("fs").promises;
 require("dotenv").config();
 
 ///////// CHECKOUT ///////////
-///////// CHECKOUT ///////////
 const createCheckoutSession = async (req, res) => {
   const cart = req.body;
 
@@ -38,6 +37,7 @@ const createCheckoutSession = async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     customer: req.session.user.id,
+    customer_email: req.session.user.email,
     line_items: line_items,
     allow_promotion_codes: true,
     mode: "payment",
@@ -45,7 +45,6 @@ const createCheckoutSession = async (req, res) => {
     cancel_url: "http://localhost:5173/cancellation",
   });
 
-  // Return session ID and URL to the client
   res.json({ sessionId: session.id, url: session.url });
 };
 

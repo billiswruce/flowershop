@@ -18,6 +18,8 @@ const CartModal = ({
   // HÅRDKODNING SKA BORT!!! KOPPLAS IHOP MED ID FRÅN SESSION
   const handlePayment = async () => {
     const cartForStripe = cart.map((item) => ({
+      image: item.product.images[0],
+      name: item.product.name,
       product: item.product.id,
       quantity: item.quantity,
     }));

@@ -38,9 +38,9 @@ button[type="submit"] {
   background-color: #cae2d3;
   color: rgb(84, 102, 83);
   border: none;
-  margin-top: 50px;
+  margin-top: 60px;
 }
 
 button[type="submit"]:hover {
-  background-color: #aeb1ee;
+  color: rgb(118, 144, 117);
 }

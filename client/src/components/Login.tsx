@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../context/CartContext"; // Importera useCart
+import { useCart } from "../context/CartContext";
+import "../styles/Login.css";
 
 export const Login = () => {
   const [email, setEmail] = useState("");

@@ -18,7 +18,7 @@ Users can register, log in, and make purchases of products managed through Strip
 - [x] **Saved Orders**: All placed orders are saved to a list in a JSON file.
 - [x] **Payment Validation**: The order is only saved if payment through Stripe has been completed.
 
-#### Additional Requirements
+#### Additional
 
 In addition to the minimum requirements, the following must be met to recieve High Approval.
 

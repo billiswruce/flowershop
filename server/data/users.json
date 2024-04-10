@@ -22,5 +22,10 @@
     "stripeCustomerId": "cus_PtP8J5xLFMztIl",
     "email": "flowergirlp12@flowers.com",
     "password": "$2b$10$3WdGvm3/OwUGya7fy3xy0OwzmDS199cpt7t2vUCOoqYgQVhK3DW8a"
+  },
+  {
+    "stripeCustomerId": "cus_PtliYyjrOSWgkF",
+    "email": "tjo@tjo.se",
+    "password": "$2b$10$f6csC0rCi07stGuzvQsxG.o6CVaZVBwC/F0j5KeJHENEtqOT3GJrq"
   }
 ]

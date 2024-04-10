@@ -17,9 +17,7 @@ const register = async (req, res) => {
 
   const userInDB = DBusers.find((u) => u.email === email);
   if (userInDB) {
-    return res
-      .status(400)
-      .json({ message: "Användaren finns redan i databasen" });
+    return res.status(400).json("User already exists");
   }
 
   const stripeCustomers = await stripe.customers.list();

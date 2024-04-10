@@ -24,10 +24,14 @@ const CartProvider = ({ children }: PropsWithChildren<any>) => {
     return lsData ? JSON.parse(lsData) : [];
   });
 
-  const [user, setUser] = useState<IUser>({ email: "" });
+  const [user, setUser] = useState<IUser>(() => {
+    const lsUser = localStorage.getItem("user");
+    return lsUser ? JSON.parse(lsUser) : { email: "" };
+  });
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("user", JSON.stringify(user));
   }, [cart, user]);
 
   const addToCart = (product: Product) => {

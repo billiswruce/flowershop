@@ -10,8 +10,6 @@ const Header = ({
   setIsModalOpen: (isOpen: boolean) => void;
 }) => {
   const { cart, user } = useCart();
-
-  // Beräkna den totala kvantiteten av alla produkter i varukorgen
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
@@ -25,7 +23,7 @@ const Header = ({
       {/* <button onClick={() => setIsOrderModalOpen(true)}>Orders</button>{" "} */}
       <div className="cart" onClick={() => setIsModalOpen(true)}>
         <BsCart2 size="2rem" />
-        <p>{totalItems}</p> {/* Visar den totala kvantiteten av produkter */}
+        <p>{totalItems}</p>
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ export const initalValues = {
   removeFromCart: () => {},
   user: { email: "" },
   setUser: () => {},
+  clearCart: () => {},
 };
 
 const CartContext = createContext<ICartContext>(initalValues);
@@ -63,9 +64,22 @@ const CartProvider = ({ children }: PropsWithChildren<any>) => {
       }
     });
   };
+
+  const clearCart = () => {
+    localStorage.removeItem("cart");
+    setCart([]);
+  };
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, user, setUser }}>
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        user,
+        setUser,
+        clearCart,
+      }}>
       {children}
     </CartContext.Provider>
   );

@@ -16,6 +16,7 @@ export interface ICartContext {
   removeFromCart: (productId: string) => void;
   user: IUser;
   setUser: (user: IUser) => void;
+  clearCart: () => void;
 }
 
 export interface IUser {

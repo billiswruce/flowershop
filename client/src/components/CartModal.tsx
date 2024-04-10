@@ -80,7 +80,6 @@ const CartModal = ({
         ))}
       </ul>
       <div>Total Items: {totalQuantity}</div>{" "}
-      {/* Visa den totala kvantiteten */}
       <div className="total-cost">Total Cost: {totalCost} SEK</div>
       <div className="pay-btn-container">
         <button onClick={handlePayment} className="pay-btn">

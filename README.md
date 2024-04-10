@@ -29,7 +29,7 @@ In addition to the minimum requirements, the following must be met to recieve Hi
 #### Before You Start
 
 - Make sure you have node.js installed
-- Register your test account at STRIPE and save your API-key
+- Register your test account at [Stripe](https://stripe.com/se) and save your API-key
 - Create your test shop and your testproducts in Stripe
 - When the repository is cloned and set up is done:
 - Create an .env file in client with following:

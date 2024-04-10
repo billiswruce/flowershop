@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/Login.css";
+import { useCart } from "../context/CartContext"; // Importera useCart
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { setUser } = useCart();
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
@@ -33,13 +34,14 @@ export const Login = () => {
         );
       }
 
+      setUser({ email });
+      console.log("användaren inloggad" + email);
       navigate("/shopping");
     } catch (error) {
       console.error("Login error:", error);
       setError("Failed to login. Please check your credentials.");
     }
   };
-
   return (
     <form onSubmit={handleSubmit}>
       <h2>Welcome! Please log in :)</h2>

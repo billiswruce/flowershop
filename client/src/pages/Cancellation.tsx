@@ -16,7 +16,7 @@ export const Cancellation = () => {
       <img
         src={cancelimg}
         alt="Order cancelled"
-        className="confirmation-image"
+        className="cancellation-image"
       />
     </div>
   );

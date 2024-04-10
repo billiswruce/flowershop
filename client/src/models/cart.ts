@@ -14,4 +14,10 @@ export interface ICartContext {
   cart: CartItem[];
   addToCart: (product: Product) => void;
   removeFromCart: (productId: string) => void;
+  user: IUser;
+  setUser: (user: IUser) => void;
+}
+
+export interface IUser {
+  email: string;
 }

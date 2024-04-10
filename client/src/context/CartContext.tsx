@@ -5,12 +5,14 @@ import {
   useEffect,
   useState,
 } from "react";
-import { Product, CartItem, ICartContext } from "../models/cart";
+import { Product, CartItem, ICartContext, IUser } from "../models/cart";
 
 export const initalValues = {
   cart: [],
   addToCart: () => {},
   removeFromCart: () => {},
+  user: { email: "" },
+  setUser: () => {},
 };
 
 const CartContext = createContext<ICartContext>(initalValues);
@@ -22,9 +24,11 @@ const CartProvider = ({ children }: PropsWithChildren<any>) => {
     return lsData ? JSON.parse(lsData) : [];
   });
 
+  const [user, setUser] = useState<IUser>({ email: "" });
+
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+  }, [cart, user]);
 
   const addToCart = (product: Product) => {
     const clonedCart = [...cart];
@@ -56,7 +60,8 @@ const CartProvider = ({ children }: PropsWithChildren<any>) => {
     });
   };
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, removeFromCart, user, setUser }}>
       {children}
     </CartContext.Provider>
   );

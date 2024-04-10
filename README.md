@@ -20,8 +20,6 @@ Users can register, log in, and make purchases of products managed through Strip
 
 #### Additional
 
-In addition to the minimum requirements, the following must be met to recieve High Approval.
-
 - [x] **Discount Code**: Ability to enter a discount code to receive a discount on purchases, through Stripe.
 - [ ] **Order History**: Logged-in users should be able to view their previously placed orders.
 - [ ] **Address and Pickup Point**: Users must fill in their address and choose a pickup point before payment, integrated with PostNord API.

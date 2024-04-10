@@ -8,7 +8,7 @@ ____________________________________________________________________________
 This webshop is created for order placement and payment through integration with Stripe.
 Users can register, log in, and make purchases of products managed through Stripe.
 
-#### Minimum Requirements for Approval
+#### Requirements
 
 - [x] **Products**: Listing of products on a page, fetched from Stripe.
 - [x] **Shopping Cart**: Ability to add products to a shopping cart.
@@ -18,7 +18,7 @@ Users can register, log in, and make purchases of products managed through Strip
 - [x] **Saved Orders**: All placed orders are saved to a list in a JSON file.
 - [x] **Payment Validation**: The order is only saved if payment through Stripe has been completed.
 
-#### Additional Requirements for High Approval
+#### Additional Requirements
 
 In addition to the minimum requirements, the following must be met to recieve High Approval.
 

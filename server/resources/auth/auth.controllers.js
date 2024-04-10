@@ -90,13 +90,14 @@ const logout = (req, res) => {
 const authorize = (req, res) => {
   try {
     console.log("Session object:", req.session.user);
-    if (!req.session.user) res.status(401).json(req.session.user);
-    return res
-      .status(401)
-      .json({ message: "You must be logged in to access this resource" });
+    if (!req.session || !req.session.user) {
+      return res
+        .status(401)
+        .json({ message: "You must be logged in to access this resource" });
+    }
   } catch (error) {
     console.error("Error authorizing user:", error);
-    res
+    return res
       .status(400)
       .json({ message: "An error occurred while authorizing user" });
   }

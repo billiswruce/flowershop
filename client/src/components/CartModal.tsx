@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import "../styles/Header.css";
 import { FaTrash } from "react-icons/fa";
@@ -10,10 +11,19 @@ const CartModal = ({
   onClose: () => void;
 }) => {
   const { cart, removeFromCart } = useCart();
+  const [totalQuantity, setTotalQuantity] = useState(0);
+  const totalCost = cart.reduce(
+    (total, item) => total + item.product.price * item.quantity,
+    0
+  );
 
-  const totalCost = cart.reduce((total, item) => {
-    return total + item.product.price * item.quantity;
-  }, 0);
+  useEffect(() => {
+    const newTotalQuantity = cart.reduce(
+      (total, item) => total + item.quantity,
+      0
+    );
+    setTotalQuantity(newTotalQuantity);
+  }, [cart]);
 
   const handlePayment = async () => {
     const cartForStripe = cart.map((item) => ({
@@ -34,12 +44,13 @@ const CartModal = ({
         body: JSON.stringify(cartForStripe),
       }
     );
+
     const data = await response.json();
 
     if (response.ok) {
       console.log(data);
       localStorage.setItem("sessionId", JSON.stringify(data.sessionId));
-      window.location = data.url;
+      window.location.href = data.url;
     } else {
       console.error("Failed to create checkout session", data);
     }
@@ -68,6 +79,7 @@ const CartModal = ({
           </li>
         ))}
       </ul>
+      <div>Total Items: {totalQuantity}</div>{" "}
       <div className="total-cost">Total Cost: {totalCost} SEK</div>
       <div className="pay-btn-container">
         <button onClick={handlePayment} className="pay-btn">

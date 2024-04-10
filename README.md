@@ -5,7 +5,7 @@ ____________________________________________________________________________
 
 #### Description
 
-This webshop is created for a school project for order placement and payment through integration with Stripe.
+This webshop is a school project created for order placement and payment through integration with Stripe.
 Users can register, log in, and make purchases of products managed through Stripe.
 
 #### Requirements

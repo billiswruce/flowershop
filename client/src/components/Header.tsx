@@ -17,7 +17,7 @@ const Header = ({
   return (
     <div className="header">
       <Logout />
-      <div>{user.email}</div>
+      <div className="header-email">{user.email}</div>
       {/* <OrderModal
           isOpen={isOrderModalOpen}
           onClose={() => setIsOrderModalOpen(false)}

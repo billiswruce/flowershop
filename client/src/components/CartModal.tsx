@@ -11,26 +11,19 @@ const CartModal = ({
   onClose: () => void;
 }) => {
   const { cart, removeFromCart } = useCart();
-
-  // Använd useState för att hantera den totala kvantiteten som en statlig variabel
   const [totalQuantity, setTotalQuantity] = useState(0);
-
-  // Beräkna den totala kostnaden
   const totalCost = cart.reduce(
     (total, item) => total + item.product.price * item.quantity,
     0
   );
 
-  // Använd useEffect för att beräkna och ställa in den totala kvantiteten varje gång 'cart' uppdateras
   useEffect(() => {
     const newTotalQuantity = cart.reduce(
       (total, item) => total + item.quantity,
       0
     );
     setTotalQuantity(newTotalQuantity);
-    // Logga den nya totala kvantiteten till konsolen (eller hantera andra sidoeffekter relaterade till denna data)
-    console.log(`Total quantity in cart: ${newTotalQuantity}`);
-  }, [cart]); // Beroendet [cart] säkerställer att effekten körs vid uppdateringar av 'cart'
+  }, [cart]);
 
   const handlePayment = async () => {
     const cartForStripe = cart.map((item) => ({

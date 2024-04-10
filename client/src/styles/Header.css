@@ -92,3 +92,8 @@ button:active {
 .cart-modal button {
   margin-left: auto;
 }
+
+.header-email {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  color: #3b493a;
+}

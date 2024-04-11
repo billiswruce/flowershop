@@ -39,7 +39,7 @@ export const Login = () => {
       localStorage.setItem("userEmail", email);
 
       setUser({ email });
-      console.log("användaren inloggad" + email);
+      console.log("user logged in: " + email);
       navigate("/shopping");
     } catch (error) {
       console.error("Login error:", error);

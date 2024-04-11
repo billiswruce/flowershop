@@ -47,5 +47,10 @@
     "stripeCustomerId": "cus_Pu8tEwg0kzIAfy",
     "email": "hej@hej.se",
     "password": "$2b$10$GFPQ2H9fLrez.jTb37IjO.9b3M2KhTxx9Ysg9tySxidyRudalrs46"
+  },
+  {
+    "stripeCustomerId": "cus_Pu9JOTLPCOzgT2",
+    "email": "ros@ros.com",
+    "password": "$2b$10$FHWTNmnZdwre63gqew5ZA.rtkRjqHSbItQXciEW5Qe8RzfIOFZpWe"
   }
 ]

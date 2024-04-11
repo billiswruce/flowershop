@@ -1,12 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  padding-right: 2rem;
-  padding-left: 2rem;
+  padding: 1rem 2rem;
   background-color: #88a587;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0;
 }
 
 .cart {
@@ -96,4 +101,46 @@ button:active {
 .header-email {
   font-family: "Trebuchet MS", Arial, sans-serif;
   color: #3b493a;
+}
+
+@media (max-width: 768px) {
+  .header,
+  .cart,
+  .pay-btn-container,
+  .header-email {
+    display: block;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .cart p,
+  .pay-btn {
+    margin: auto;
+    display: block;
+  }
+
+  .header {
+    padding: 1rem;
+  }
+
+  .logout-btn {
+    margin: 1rem auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 0.5rem 1rem;
+  }
+
+  .header-email,
+  .cart p,
+  .pay-btn,
+  button {
+    font-size: 0.8rem;
+  }
+
+  .cart-modal {
+    width: 100%;
+  }
 }

@@ -2,10 +2,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 400px;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .form-item {
@@ -43,4 +39,21 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   color: rgb(118, 144, 117);
+}
+
+@media (max-width: 1024px) {
+  .form-container {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 600px) {
+  .form-container {
+    max-width: 65%;
+  }
+  .logo {
+    display: block;
+    margin: auto;
+    max-width: 80%;
+  }
 }

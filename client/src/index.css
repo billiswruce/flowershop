@@ -19,7 +19,6 @@ body {
   display: flex;
   place-items: center;
   flex-direction: column;
-  min-width: 320px;
   min-height: 100vh;
   background: #88a587;
 }
@@ -80,31 +79,4 @@ button {
   width: 100%;
   height: auto;
   border-radius: 5px;
-}
-
-@media (max-width: 1024px) {
-  .grid-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .grid-container {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
 }

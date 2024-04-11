@@ -3,6 +3,7 @@ import { Registration } from "../components/Registration";
 import { Login } from "../components/Login";
 import { useNavigate } from "react-router-dom";
 import logo from "../img/logo.png";
+import "../styles/Home.css";
 
 export const Home = () => {
   const [user, setUser] = useState<string>("");
@@ -34,8 +35,14 @@ export const Home = () => {
   }, []);
 
   return (
-    <div>
-      <h1>{user ? `INLOGGAD ${user}` : <img src={logo} alt="Logo" />}</h1>
+    <div className="page-container">
+      <h1>
+        {user ? (
+          `INLOGGAD ${user}`
+        ) : (
+          <img src={logo} alt="Logo" className="logo" />
+        )}
+      </h1>
       {!user && (
         <>
           {isRegistering ? (
@@ -50,7 +57,7 @@ export const Home = () => {
           ) : (
             <>
               <Login />
-              <p>
+              <p className="registration-prompt">
                 Need an account? Register{" "}
                 <span
                   className="link-like"

@@ -21,22 +21,35 @@ export const useCart = () => useContext(CartContext);
 
 const CartProvider = ({ children }: PropsWithChildren<any>) => {
   const [cart, setCart] = useState<CartItem[]>(() => {
-    const lsData = localStorage.getItem("cart");
-    return lsData ? JSON.parse(lsData) : [];
+    const lsUser = localStorage.getItem("user");
+    const currentUser = lsUser ? JSON.parse(lsUser) : { email: "" };
+    const lsCart = localStorage.getItem(
+      currentUser.email ? `cart-${currentUser.email}` : "cart"
+    );
+    return lsCart ? JSON.parse(lsCart) : [];
   });
 
-  const [user, setUser] = useState<IUser>(() => {
-    const lsUser = localStorage.getItem("user");
-    return lsUser ? JSON.parse(lsUser) : { email: "" };
-  });
+  const [user, setUser] = useState<IUser>({ email: "" });
 
   useEffect(() => {
-    if (!user || !user.email) {
+    localStorage.setItem("user", JSON.stringify(user));
+    const lsCart = localStorage.getItem(
+      user.email ? `cart-${user.email}` : "cart"
+    );
+    if (lsCart) {
+      setCart(JSON.parse(lsCart));
+    } else {
       setCart([]);
     }
-    localStorage.setItem("cart", JSON.stringify(cart));
-    localStorage.setItem("user", JSON.stringify(user));
-  }, [cart, user]);
+  }, [user]);
+
+  useEffect(() => {
+    if (user.email) {
+      localStorage.setItem(`cart-${user.email}`, JSON.stringify(cart));
+    } else {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart, user.email]);
 
   const addToCart = (product: Product) => {
     const clonedCart = [...cart];

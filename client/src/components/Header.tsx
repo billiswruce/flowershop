@@ -1,16 +1,23 @@
+import { useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import { BsCart2 } from "react-icons/bs";
 import Logout from "./Logout";
 import "../styles/Header.css";
-// import OrderModal from "./OrderModal";
 
 const Header = ({
   setIsModalOpen,
 }: {
   setIsModalOpen: (isOpen: boolean) => void;
 }) => {
-  const { cart, user } = useCart();
+  const { cart, user, setUser } = useCart();
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+
+  useEffect(() => {
+    const userEmail = localStorage.getItem("userEmail");
+    if (userEmail) {
+      setUser({ email: userEmail });
+    }
+  }, [setUser]);
 
   return (
     <div className="header">

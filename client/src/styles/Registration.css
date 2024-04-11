@@ -26,8 +26,8 @@ button[type="submit"] {
   background-color: #cae2d3;
   color: #546653;
   border: none;
-  margin-top: 50px;
-  margin-bottom: 15px;
+  margin-top: 56px;
+  margin-bottom: 10px;
 }
 
 button[type="submit"]:hover {
@@ -49,4 +49,7 @@ button[type="submit"]:hover {
     margin: auto;
     max-width: 80%;
   }
+}
+
+.btn-register {
 }

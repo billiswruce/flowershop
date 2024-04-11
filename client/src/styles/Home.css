@@ -10,9 +10,18 @@
 .registration-prompt {
   text-align: left;
   width: 100%;
+  margin-top: 14px;
+}
+.link-like {
+  text-align: left;
+  width: 100%;
 }
 
 @media (max-width: 1024px) {
+  .link-like {
+    text-align: center;
+  }
+
   .registration-prompt {
     text-align: center;
   }

@@ -33,7 +33,7 @@ export const Registration = () => {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h2>Register</h2>
       {errorMessage && <p className="error">{errorMessage}</p>}
       {successMessage && <p className="success">{successMessage}</p>}{" "}

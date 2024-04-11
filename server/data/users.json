@@ -52,5 +52,10 @@
     "stripeCustomerId": "cus_Pu9JOTLPCOzgT2",
     "email": "ros@ros.com",
     "password": "$2b$10$FHWTNmnZdwre63gqew5ZA.rtkRjqHSbItQXciEW5Qe8RzfIOFZpWe"
+  },
+  {
+    "stripeCustomerId": "cus_PuE7OTXAES1T4q",
+    "email": "nina@nina.se",
+    "password": "$2b$10$WPJTIvwgDK6M/gGnQqA24u0Zi8cOGkewBp7bD8qXWtwdwbn2OY93i"
   }
 ]

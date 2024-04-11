@@ -35,12 +35,15 @@ export const Login = () => {
         );
       }
 
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("userEmail", email);
+
       setUser({ email });
       console.log("användaren inloggad" + email);
       navigate("/shopping");
     } catch (error) {
       console.error("Login error:", error);
-      setError("Failed to login. Please check your credentials.");
+      setError("Failed to login. Please try again");
     }
   };
   return (

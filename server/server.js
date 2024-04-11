@@ -24,8 +24,7 @@ app.use(express.json());
 app.use(
   cookieSession({
     secret: "hemligt",
-    maxAge: 1000 * 60 * 60 * 24 * 7, // 1 vecka
-    //finns massa mer saker, kolla föreläsningen från 40 minuter 3 filmen för mer info
+    maxAge: 1000 * 60 * 60 * 24 * 7,
   })
 );
 app.use("/payments", stripeRouter);

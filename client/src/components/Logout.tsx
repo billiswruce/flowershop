@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 const Logout = () => {
   const navigate = useNavigate();
+  const { setUser } = useCart();
 
   const handleLogout = async () => {
     const confirmLogout = confirm("Are you sure you want to log out?");
@@ -15,6 +17,10 @@ const Logout = () => {
         credentials: "include",
       });
       if (response.status === 200) {
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("userEmail");
+        setUser({ email: "" });
+
         navigate("/");
       }
     } catch (error) {

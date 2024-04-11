@@ -27,5 +27,25 @@
     "stripeCustomerId": "cus_PtliYyjrOSWgkF",
     "email": "tjo@tjo.se",
     "password": "$2b$10$f6csC0rCi07stGuzvQsxG.o6CVaZVBwC/F0j5KeJHENEtqOT3GJrq"
+  },
+  {
+    "stripeCustomerId": "cus_Pu7jlcEcJyQdkx",
+    "email": "tulip@tulip.com",
+    "password": "$2b$10$ubasOiHv1uejlnwOIqDaR.1eyl5xEVYO3Muzfl/7gsd9/MgYTpuxu"
+  },
+  {
+    "stripeCustomerId": "cus_Pu7qvR9XSRoplV",
+    "email": "tea@tea.com",
+    "password": "$2b$10$OzZBs7Y1ugdaJyL0XFQGkOry3beWmcXsjsvwiAj1WztoWkeAqNvDm"
+  },
+  {
+    "stripeCustomerId": "cus_Pu82nte1uxopSN",
+    "email": "pizza@pizza.com",
+    "password": "$2b$10$Ts6ItgMpTop.EBVeaEaO/.2ba3w5QVUqk.GR02gVA//bxrbg3FxpW"
+  },
+  {
+    "stripeCustomerId": "cus_Pu8tEwg0kzIAfy",
+    "email": "hej@hej.se",
+    "password": "$2b$10$GFPQ2H9fLrez.jTb37IjO.9b3M2KhTxx9Ysg9tySxidyRudalrs46"
   }
 ]

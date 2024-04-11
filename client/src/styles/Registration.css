@@ -6,7 +6,7 @@ input[type="email"] {
   margin-top: 5px;
   border-radius: 4px;
   border: 1px solid #ccc;
-  box-sizing: border-box; /* För att padding inte ska påverka totala bredden */
+  box-sizing: border-box;
   background: #dce8e1;
 }
 

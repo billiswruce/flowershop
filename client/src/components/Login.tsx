@@ -48,7 +48,7 @@ export const Login = () => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Welcome! Please log in :)</h2>
+      <h2>Welcome! Please log in to shop :)</h2>
       <div>
         <input
           type="email"

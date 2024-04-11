@@ -7,7 +7,7 @@ import {
 } from "react";
 import { Product, CartItem, ICartContext, IUser } from "../models/cart";
 
-export const initalValues = {
+export const initialValues = {
   cart: [],
   addToCart: () => {},
   removeFromCart: () => {},
@@ -16,7 +16,7 @@ export const initalValues = {
   clearCart: () => {},
 };
 
-const CartContext = createContext<ICartContext>(initalValues);
+const CartContext = createContext<ICartContext>(initialValues);
 export const useCart = () => useContext(CartContext);
 
 const CartProvider = ({ children }: PropsWithChildren<any>) => {
@@ -31,6 +31,9 @@ const CartProvider = ({ children }: PropsWithChildren<any>) => {
   });
 
   useEffect(() => {
+    if (!user || !user.email) {
+      setCart([]);
+    }
     localStorage.setItem("cart", JSON.stringify(cart));
     localStorage.setItem("user", JSON.stringify(user));
   }, [cart, user]);

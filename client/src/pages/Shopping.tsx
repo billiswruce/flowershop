@@ -3,6 +3,7 @@ import logo from "../img/logo.png";
 import { useCart } from "../context/CartContext";
 import Header from "../components/Header";
 import CartModal from "../components/CartModal";
+import "../styles/Shopping.css";
 
 export const Shopping = () => {
   const [products, setProducts] = useState([]);
@@ -57,7 +58,9 @@ export const Shopping = () => {
                 )}
                 <h3 className="title">{product.name}</h3>
                 <p className="price">{product.price} SEK</p>
-                <button onClick={() => addToCart(product)}>Add to Cart</button>
+                <button onClick={() => addToCart(product)} className="shop-btn">
+                  Add to Cart
+                </button>
               </div>
             )
           )}

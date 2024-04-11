@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { BsCart2 } from "react-icons/bs";
 import Logout from "./Logout";
@@ -12,10 +11,8 @@ const Header = ({
 }) => {
   const { cart, user, setUser } = useCart();
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    // Hämta användarens e-postadress från localStorage när komponenten mountas eller uppdateras
     const userEmail = localStorage.getItem("userEmail");
     if (userEmail) {
       setUser({ email: userEmail });

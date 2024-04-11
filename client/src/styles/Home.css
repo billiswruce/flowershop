@@ -1,0 +1,25 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.registration-prompt {
+  text-align: left;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .registration-prompt {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .registration-prompt {
+    text-align: center;
+  }
+}

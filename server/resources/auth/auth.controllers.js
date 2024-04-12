@@ -25,7 +25,7 @@ const register = async (req, res) => {
     (c) => c.email === req.body.email
   );
   if (customerInStripe) {
-    return res.status(400).json({ message: "Användaren finns redan i Stripe" });
+    return res.status(400).json({ message: "User already in stripe" });
   }
 
   const saveStripeCustomer = await stripe.customers.create({
@@ -46,9 +46,7 @@ const register = async (req, res) => {
 
     await fs.writeFile("./data/users.json", JSON.stringify(DBusers, null, 2));
 
-    res
-      .status(201)
-      .json({ message: "Användare registrerad", email: newUser.email });
+    res.status(201).json({ message: "User registered", email: newUser.email });
   }
 };
 
@@ -60,16 +58,14 @@ const login = async (req, res) => {
     const userExists = users.find((u) => u.email === email);
 
     if (!userExists || !(await bcrypt.compare(password, userExists.password))) {
-      return res
-        .status(401)
-        .json({ message: "Fel användarnamn eller lösenord" });
+      return res.status(401).json({ message: "Wrong username or password" });
     }
 
     req.session.user = { email: userExists.email, id: userExists.id };
     res.status(200).json({ email: userExists.email, id: userExists.id });
   } catch (error) {
     console.error("Login error:", error);
-    res.status(500).json({ message: "Ett fel inträffade vid inloggning" });
+    res.status(500).json({ message: "Error while logging in" });
   }
 };
 
@@ -77,7 +73,7 @@ const login = async (req, res) => {
 const logout = (req, res) => {
   try {
     req.session = null;
-    res.status(200).json("Utloggad");
+    res.status(200).json("Logged out");
   } catch (error) {
     console.error("Error logging out user:", error);
     res

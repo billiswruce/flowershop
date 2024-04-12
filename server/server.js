@@ -11,7 +11,6 @@ const { getProducts } = require("./resources/stripe/stripe.controller");
 
 const app = express();
 
-// Set up CORS
 app.use(
   cors({
     origin: "http://localhost:5173",

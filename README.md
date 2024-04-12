@@ -44,7 +44,7 @@ To build and run the project, follow these steps:
 
 - Clone this repository from [Github](https://github.com/billiswruce/flowershop.git)
 - New Terminal for Client: First `cd client` then run `npm i` and `npm run dev`
-- New Terminal for Server: First`cd server` Run `npm i` and `npm start test` or `node server.js`
+- New Terminal for Server: First`cd server` Run `npm i` and `node server`
 - Make sure your express server is running
 - Navigate to http://localhost:5173/ in your browser to use the app
 

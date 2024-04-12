@@ -37,6 +37,10 @@ button:active {
   background-color: #88a587;
 }
 
+.close-btn {
+  margin-bottom: 20px;
+}
+
 .pay-btn-container {
   display: flex;
   justify-content: center;
@@ -64,6 +68,7 @@ button:active {
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
   overflow-y: auto;
   z-index: 1000;
+  padding-top: 30px;
 }
 
 .cart-modal-hidden {

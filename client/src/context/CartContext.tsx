@@ -21,11 +21,7 @@ export const useCart = () => useContext(CartContext);
 
 const CartProvider = ({ children }: PropsWithChildren<any>) => {
   const [cart, setCart] = useState<CartItem[]>(() => {
-    const lsUser = localStorage.getItem("user");
-    const currentUser = lsUser ? JSON.parse(lsUser) : { email: "" };
-    const lsCart = localStorage.getItem(
-      currentUser.email ? `cart-${currentUser.email}` : "cart"
-    );
+    const lsCart = localStorage.getItem("cart");
     return lsCart ? JSON.parse(lsCart) : [];
   });
 
@@ -33,23 +29,11 @@ const CartProvider = ({ children }: PropsWithChildren<any>) => {
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
-    const lsCart = localStorage.getItem(
-      user.email ? `cart-${user.email}` : "cart"
-    );
-    if (lsCart) {
-      setCart(JSON.parse(lsCart));
-    } else {
-      setCart([]);
-    }
   }, [user]);
 
   useEffect(() => {
-    if (user.email) {
-      localStorage.setItem(`cart-${user.email}`, JSON.stringify(cart));
-    } else {
-      localStorage.setItem("cart", JSON.stringify(cart));
-    }
-  }, [cart, user.email]);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   const addToCart = (product: Product) => {
     const clonedCart = [...cart];

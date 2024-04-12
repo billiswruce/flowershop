@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../context/CartContext"; // Glöm inte att importera useCart
+import { useCart } from "../context/CartContext"; 
 import thankYouImage from "../img/confirm2.jpg";
 import "../styles/Confirmation.css";
 
@@ -8,7 +8,7 @@ export const Confirmation = () => {
   const [verified, setVerified] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const { clearCart } = useCart(); // Hämta clearCartAndUser från useCart
+  const { clearCart } = useCart(); 
 
   useEffect(() => {
     const verifySession = async () => {

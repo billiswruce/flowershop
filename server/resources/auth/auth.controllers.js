@@ -75,7 +75,7 @@ const logout = (req, res) => {
     req.session = null;
     res.status(200).json("Logged out");
   } catch (error) {
-    console.error("Error logging out user:", error);
+    console.error("Error logging out:", error);
     res
       .status(400)
       .json({ message: "An error occurred while logging out user" });

@@ -50,7 +50,6 @@ const createCheckoutSession = async (req, res) => {
 
 ///////// VERIFY ///////////
 const verifySession = async (req, res) => {
-  console.log("hallåååå");
   const stripe = initStripe();
 
   const sessionId = req.body.sessionId;

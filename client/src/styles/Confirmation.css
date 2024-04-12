@@ -7,10 +7,16 @@
   border-radius: 20px;
   max-width: 90%;
   margin-bottom: 20px;
+  margin-top: 30px;
 }
 
 .cancellation-image {
   border-radius: 20px;
   max-width: 70%;
   margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+.back-to-shop-btn {
+  margin: 30px;
 }

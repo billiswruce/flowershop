@@ -62,5 +62,25 @@
     "stripeCustomerId": "cus_PuESYvxDnoXPzK",
     "email": "sun@sun.se",
     "password": "$2b$10$l1WMfVRG9YEKhYhSQiR3qOM3ohgYKn3zBTlpKKzaEhoHES7ECAe9m"
+  },
+  {
+    "stripeCustomerId": "cus_PuJ2CsKEOkBNha",
+    "email": "wine@wine.se",
+    "password": "$2b$10$leuJeQb0sqohXVWUWi6.EuKY6NKEM6hZaP/0FdjHidv8VNAMw5pHO"
+  },
+  {
+    "stripeCustomerId": "cus_PuRwhXTRzxbINr",
+    "email": "dog@dog.se",
+    "password": "$2b$10$pGrKMzgug6CfmDJjoDPU.OW/ns9mbQupVFQb/5IyPJbTpEPyNhsTm"
+  },
+  {
+    "stripeCustomerId": "cus_PuRzouu5qyI22c",
+    "email": "hejsan@gojsan.com",
+    "password": "$2b$10$Qp1IQgVlOYwBaMpvdxjXl.oU7U7/YW1bHvaxyOsE.0nG63NYNsxq."
+  },
+  {
+    "stripeCustomerId": "cus_PuSbLDJnklgge4",
+    "email": "blue@blue.se",
+    "password": "$2b$10$Voy4tcwbaD8o93XbC9SIj.OTbk1JMMjySg2e7P0XhOPT5AWlkxJ4W"
   }
 ]
